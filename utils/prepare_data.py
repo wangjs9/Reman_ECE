@@ -5,7 +5,7 @@ import pickle as pk
 path = '../reman/'
 
 max_doc_len = 75
-max_sen_len = 45
+max_sen_len = 35
 
 def process_data(text_file, input_file, output_file, context=False):
     """
@@ -92,7 +92,8 @@ def load_data(input_file, max_doc_len=max_doc_len, max_sen_len=max_sen_len):
 
     bert = BertModel.from_pretrained('bert-base-uncased',output_attentions=False,
                     output_hidden_states=False)
-    bert.embeddings.requires_grad = False
+    for param in bert.parameters():
+        param.requires_grad = False
 
     data = pd.read_csv(input_file, sep='\t', encoding='UTF-8', header=0)
     for index, line in data.iterrows():
@@ -119,15 +120,15 @@ def load_data(input_file, max_doc_len=max_doc_len, max_sen_len=max_sen_len):
         encoded_dict = tokenizer.encode_plus(words,
                              add_special_tokens=True,  # Add '[CLS]' and '[SEP]'
                              max_length=max_sen_len,  # Pad & truncate all sentences.
-                             padding='max_length',
+                             pad_to_max_length=True,
                              return_attention_mask=True,  # Construct attn. masks.
                              return_tensors='pt',  # Return pytorch tensors.
-                             truncation=True)
+                             truncation_strategy='longest_first')
 
         clause, _ = bert(encoded_dict['input_ids'], token_type_ids=None, attention_mask=encoded_dict['attention_mask'])
         relative_pos_clause = [word_pos] * max_sen_len
         relative_pos_all.append(np.array(relative_pos_clause))
-        clause_all.append(clause)
+        clause_all.append(clause.cpu().numpy())
         tmp_clause_len.append(encoded_dict['attention_mask'][0])
         if cause:
             no_clause += 1
@@ -139,7 +140,6 @@ def load_data(input_file, max_doc_len=max_doc_len, max_sen_len=max_sen_len):
     relative_pos, x, y, sen_len, doc_len = map(np.array, [relative_pos, x, y, sen_len, doc_len])
     pk.dump(relative_pos, open(path + 'relative_pos.txt', 'wb'))
     pk.dump(x, open(path + 'x.txt', 'wb'))
-    print(x)
     pk.dump(y, open(path + 'y.txt', 'wb'))
     pk.dump(sen_len, open(path + 'sen_len.txt', 'wb'))
     pk.dump(doc_len, open(path + 'doc_len.txt', 'wb'))
