@@ -8,26 +8,28 @@
 import numpy as np
 import transformer as trans
 import tensorflow as tf
-import sys, time
+import sys, time, os
 import utils.tf_funcs as func
 from sklearn.model_selection import KFold
 from sklearn.model_selection import ParameterGrid
+import warnings
+warnings.filterwarnings('ignore')
 
 FLAGS = tf.app.flags.FLAGS
 # >>>>>>>>>>>>>>>>>>>> For Model <<<<<<<<<<<<<<<<<<<< #
 # embedding parameters ##
-tf.app.flags.DEFINE_integer('embedding_dim', 200, 'dimension of word embedding')
+tf.app.flags.DEFINE_integer('embedding_dim', 768, 'dimension of word embedding')
 tf.app.flags.DEFINE_integer('embedding_dim_pos', 50, 'dimension of position embedding')
 # input struct ##
-tf.app.flags.DEFINE_integer('max_doc_len', 75, 'max number of tokens per documents')
-tf.app.flags.DEFINE_integer('max_sen_len', 45, 'max number of tokens per sentence')
+tf.app.flags.DEFINE_integer('max_doc_len', 35, 'max number of tokens per documents')
+tf.app.flags.DEFINE_integer('max_sen_len', 50, 'max number of tokens per sentence')
 # model struct ##
 tf.app.flags.DEFINE_integer('n_hidden', 100, 'number of hidden unit')
 tf.app.flags.DEFINE_integer('n_class', 2, 'number of distinct class')
 # >>>>>>>>>>>>>>>>>>>> For Data <<<<<<<<<<<<<<<<<<<< #
-tf.app.flags.DEFINE_string('log_file_name', '', 'name of log file')
+tf.app.flags.DEFINE_string('log_file_name', 'log', 'name of log file')
 # >>>>>>>>>>>>>>>>>>>> For Training <<<<<<<<<<<<<<<<<<<< #
-tf.app.flags.DEFINE_integer('training_iter', 15, 'number of train iter')
+tf.app.flags.DEFINE_integer('training_iter', 20, 'number of train iter')
 tf.app.flags.DEFINE_string('scope', 'RNN', 'RNN scope')
 # not easy to tune , a good posture of using data to train model is very important
 tf.app.flags.DEFINE_integer('batch_size', 32, 'number of example per batch')
@@ -36,12 +38,13 @@ tf.app.flags.DEFINE_float('lr_main', 0.001, 'learning rate')
 tf.app.flags.DEFINE_float('keep_prob1', 0.5, 'word embedding training dropout keep prob')
 tf.app.flags.DEFINE_float('keep_prob2', 1.0, 'softmax layer dropout keep prob')
 tf.app.flags.DEFINE_float('l2_reg', 1e-5, 'l2 regularization')
-tf.app.flags.DEFINE_integer('run_times', 10, 'run times of this model')
+tf.app.flags.DEFINE_integer('run_times', 3, 'run times of this model')
 tf.app.flags.DEFINE_integer('num_heads', 5, 'the num heads of attention')
 tf.app.flags.DEFINE_integer('n_layers', 2, 'the layers of transformer beside main')
+# >>>>>>>>>>>>>>>>>>>> For Save Path <<<<<<<<<<<<<<<<<<<< #
+tf.app.flags.DEFINE_string('save_path', './checkpoint', 'name of save path')
 
-
-def build_model(x, sen_len, doc_len, word_dis, pos_embedding, keep_prob1, keep_prob2, RNN=func.biLSTM):
+def build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding, keep_prob1, keep_prob2, RNN=func.biLSTM):
     inputs = tf.reshape(x, [-1, FLAGS.max_sen_len, FLAGS.embedding_dim])
     word_dis = tf.nn.embedding_lookup(pos_embedding, word_dis)
     sh2 = 2 * FLAGS.n_hidden
@@ -128,11 +131,12 @@ def run():
     print("***********localtime: ", localtime)
     x_data, y_data, sen_len_data, doc_len_data, word_distance, pos_embedding = func.load_data()
 
+    # word_embedding = tf.constant(word_embedding, dtype=tf.float32, name='word_embedding')
     pos_embedding = tf.constant(pos_embedding, dtype=tf.float32, name='pos_embedding')
     print('build model...')
 
     start_time = time.time()
-    x = tf.placeholder(tf.int32, [None, FLAGS.max_doc_len, FLAGS.max_sen_len])
+    x = tf.placeholder(tf.float32, [None, FLAGS.max_doc_len, FLAGS.max_sen_len, FLAGS.embedding_dim])
     y = tf.placeholder(tf.float32, [None, FLAGS.max_doc_len, FLAGS.n_class])
     sen_len = tf.placeholder(tf.int32, [None, FLAGS.max_doc_len])
     doc_len = tf.placeholder(tf.int32, [None])
@@ -141,7 +145,7 @@ def run():
     keep_prob2 = tf.placeholder(tf.float32)
     placeholders = [x, y, sen_len, doc_len, word_dis, keep_prob1, keep_prob2]
 
-    pred, reg, pred_assist_list, reg_assist_list = build_model(x, sen_len, doc_len, word_dis, pos_embedding, keep_prob1, keep_prob2)
+    pred, reg, pred_assist_list, reg_assist_list = build_model(x,sen_len, doc_len, word_dis, None, pos_embedding, keep_prob1, keep_prob2)
 
     with tf.name_scope('loss'):
         valid_num = tf.cast(tf.reduce_sum(doc_len), dtype=tf.float32)
@@ -174,20 +178,25 @@ def run():
     print_training_info()
     tf_config = tf.ConfigProto()
     tf_config.gpu_options.allow_growth = True
+    saver = tf.train.Saver()
     with tf.Session(config=tf_config) as sess:
         kf, fold, SID = KFold(n_splits=10), 1, 0
         Id = []
         p_list, r_list, f1_list = [], [], []
+
         for train, test in kf.split(x_data):
             tr_x, tr_y, tr_sen_len, tr_doc_len, tr_word_dis = map(lambda x: x[train],
                 [x_data, y_data, sen_len_data, doc_len_data, word_distance])
+
             te_x, te_y, te_sen_len, te_doc_len, te_word_dis = map(lambda x: x[test],
                 [x_data, y_data, sen_len_data, doc_len_data, word_distance])
 
             precision_list, recall_list, FF1_list = [], [], []
             pre_list, true_list, pre_list_prob = [], [], []
-
-            sess.run(tf.global_variables_initializer())
+            if os.path.exists(FLAGS.save_path+'/model.ckpt'):
+                saver.restore(sess, FLAGS.save_path+'/model.ckpt')
+            else:
+                sess.run(tf.global_variables_initializer())
             print('############# fold {} ###############'.format(fold))
             fold += 1
             max_f1 = 0.0
@@ -201,26 +210,39 @@ def run():
                     training_iter = FLAGS.training_iter - 5
                 for i in range(training_iter):
                     step = 1
-                    for train, _ in get_batch_data(tr_x, tr_y, tr_sen_len, tr_doc_len, tr_word_dis, FLAGS.keep_prob1, FLAGS.keep_prob2, FLAGS.batch_size):
-                        _, loss, pred_y, true_y, pred_prob, doc_len_batch = sess.run(
-                            [optimizer_assist_list[layer], loss_assist_list[layer], pred_y_assist_op_list[layer], true_y_op, pred_assist_list[layer], doc_len],
-                            feed_dict=dict(zip(placeholders, train)))
-                        acc_assist, p_assist, r_assist, f1_assist = func.acc_prf(pred_y, true_y, doc_len_batch)
-                        if step % 10 == 0:
-                            print('GL{}: epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(layer + 1, i + 1, step, loss, acc_assist))
-                        step = step + 1
+                    data_generator = get_batch_data(tr_x, tr_y, tr_sen_len, tr_doc_len, tr_word_dis, FLAGS.keep_prob1, FLAGS.keep_prob2,
+                                   FLAGS.batch_size)
+                    while True:
+                        try:
+                            train, _ = next(data_generator)
+                            _, loss, pred_y, true_y, pred_prob, doc_len_batch = sess.run(
+                                [optimizer_assist_list[layer], loss_assist_list[layer], pred_y_assist_op_list[layer], true_y_op, pred_assist_list[layer], doc_len],
+                                feed_dict=dict(zip(placeholders, train)))
+                            acc_assist, p_assist, r_assist, f1_assist = func.acc_prf(pred_y, true_y, doc_len_batch)
+                            if step % 10 == 0:
+                                print('GL{}: epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(layer + 1, i + 1, step, loss, acc_assist))
+                            step = step + 1
+                        except:
+                            break
 
             '''*********Train********'''
+            step = 1
             for epoch in range(FLAGS.training_iter):
-                step = 1
-                for train, _ in get_batch_data(tr_x, tr_y, tr_sen_len, tr_doc_len, tr_word_dis, FLAGS.keep_prob1, FLAGS.keep_prob2, FLAGS.batch_size):
-                    _, loss, pred_y, true_y, pred_prob, doc_len_batch = sess.run(
-                        [optimizer, loss_op, pred_y_op, true_y_op, pred, doc_len],
-                        feed_dict=dict(zip(placeholders, train)))
-                    acc, p, r, f1 = func.acc_prf(pred_y, true_y, doc_len_batch)
-                    if step % 5 == 0:
-                        print('epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(epoch + 1, step, loss, acc))
-                    step = step + 1
+                data_generator = get_batch_data(tr_x, tr_y, tr_sen_len, tr_doc_len, tr_word_dis, FLAGS.keep_prob1, FLAGS.keep_prob2,
+                               FLAGS.batch_size)
+                while True:
+                    try:
+                        train, _ = next(data_generator)
+                        _, loss, pred_y, true_y, pred_prob, doc_len_batch = sess.run(
+                            [optimizer, loss_op, pred_y_op, true_y_op, pred, doc_len],
+                            feed_dict=dict(zip(placeholders, train)))
+                        acc, p, r, f1 = func.acc_prf(pred_y, true_y, doc_len_batch)
+                        if step % 10 == 0:
+                            print('epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(epoch + 1, step, loss, acc))
+                            saver.save(sess, FLAGS.save_path+'/model.ckpt')
+                        step = step + 1
+                    except:
+                        break
 
                 '''*********Test********'''
                 test = [te_x, te_y, te_sen_len, te_doc_len, te_word_dis, 1., 1.]
@@ -237,10 +259,11 @@ def run():
                 precision_list.append(p)
                 recall_list.append(r)
                 FF1_list.append(f1)
-                if f1 > max_f1:
+                if f1 >= max_f1:
                     max_acc, max_p, max_r, max_f1 = acc, p, r, f1
                 print('\ntest: epoch {}: loss {:.4f} acc {:.4f}\np: {:.4f} r: {:.4f} f1: {:.4f} max_f1 {:.4f}\n'.format(
                     epoch + 1, loss, acc, p, r, f1, max_f1))
+
 
             Id.append(len(te_x))
             SID = np.sum(Id) - len(te_x)

@@ -4,8 +4,8 @@ import re
 import pickle as pk
 path = '../reman/'
 
-max_doc_len = 75
-max_sen_len = 35
+max_doc_len = 35
+max_sen_len = 50
 
 def process_data(text_file, input_file, output_file, context=False):
     """
@@ -24,6 +24,7 @@ def process_data(text_file, input_file, output_file, context=False):
     else:
         col_name = ['conv_id', 'no', 'label', 'relative_pos', 'cause', 'clause']
     data = []
+    SenID = 0
     for conv_id, row in ece.iterrows():
         text = doctext.loc[conv_id,0]
         text_tokens = re.split(punc, text)
@@ -52,10 +53,11 @@ def process_data(text_file, input_file, output_file, context=False):
                     cause_id = length_id
             for clause_id, clause in enumerate(text_tokens):
                 if context:
-                    temp = [conv_id, no, text, emotion_clause, cause_clause, label, clause_id-emotion_id, clause_id==cause_id, clause]
+                    temp = [SenID, clause_id, text, emotion_clause, cause_clause, label, clause_id-emotion_id, clause_id==cause_id, clause]
                 else:
-                    temp = [conv_id, no, label, clause_id-emotion_id, clause_id==cause_id, clause]
+                    temp = [SenID, clause_id, label, clause_id-emotion_id, clause_id==cause_id, clause]
                 data.append(temp)
+            SenID += 1
 
     data = pd.DataFrame(data)
     data.to_csv(output_file, encoding='UTF-8', sep='\t', index=False, header=col_name)
@@ -97,8 +99,6 @@ def load_data(input_file, max_doc_len=max_doc_len, max_sen_len=max_sen_len):
 
     data = pd.read_csv(input_file, sep='\t', encoding='UTF-8', header=0)
     for index, line in data.iterrows():
-        if index % 100 == 0:
-            print('works')
         n_clause += 1
         senID, clause_idx, emo_word, sen_pos, cause, words = line
         word_pos = int(sen_pos) + 69
@@ -107,7 +107,7 @@ def load_data(input_file, max_doc_len=max_doc_len, max_sen_len=max_sen_len):
             doc_len.append(len(clause_all))
 
             for j in range(max_doc_len - len(clause_all)):
-                clause_all.append(np.zeros((max_sen_len,)))
+                clause_all.append(np.zeros((max_sen_len, 768)))
                 tmp_clause_len.append(0)
                 relative_pos_all.append(np.zeros((max_sen_len,)))
             relative_pos.append(relative_pos_all)
@@ -128,14 +128,14 @@ def load_data(input_file, max_doc_len=max_doc_len, max_sen_len=max_sen_len):
         clause, _ = bert(encoded_dict['input_ids'], token_type_ids=None, attention_mask=encoded_dict['attention_mask'])
         relative_pos_clause = [word_pos] * max_sen_len
         relative_pos_all.append(np.array(relative_pos_clause))
-        clause_all.append(clause.cpu().numpy())
-        tmp_clause_len.append(encoded_dict['attention_mask'][0])
+        clause_all.append(clause.cpu().numpy()[0])
+        tmp_clause_len.append(sum(encoded_dict['attention_mask'][0]))
         if cause:
             no_clause += 1
-            y_clause_cause[clause_idx-1] = [1,0]
+            y_clause_cause[clause_idx] = [1,0]
         else:
             yes_clause += 1
-            y_clause_cause[clause_idx-1] = [0,1]
+            y_clause_cause[clause_idx] = [0,1]
 
     relative_pos, x, y, sen_len, doc_len = map(np.array, [relative_pos, x, y, sen_len, doc_len])
     pk.dump(relative_pos, open(path + 'relative_pos.txt', 'wb'))
@@ -151,6 +151,6 @@ def load_data(input_file, max_doc_len=max_doc_len, max_sen_len=max_sen_len):
     print('load data done!\n')
     return x, y, sen_len, doc_len
 
-# process_data(path+'reman-text.csv', path+'reman-ece.csv', path+'clause_keywords.csv', context=False)
+process_data(path+'reman-text.csv', path+'reman-ece.csv', path+'clause_keywords.csv', context=False)
 # load_w2v(50)
 load_data(path+'clause_keywords.csv')

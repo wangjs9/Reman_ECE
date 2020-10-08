@@ -10,9 +10,9 @@ import tensorflow as tf
 import random
 import pickle as pk
 from sklearn.metrics import precision_score, recall_score, f1_score
-path = '../reman/'
-max_doc_len = 75
-max_sen_len = 45
+path = './reman/'
+max_doc_len = 35
+max_sen_len = 50
 
 
 def load_data():
@@ -24,7 +24,6 @@ def load_data():
     embedding_pos = pk.load(open(path + 'embedding_pos.txt', 'rb'))
     print('x.shape {} \ny.shape {} \nsen_len.shape {} \ndoc_len.shape {}\nrelative_pos.shape {}\nembedding_pos.shape {}'.format(x.shape, y.shape, sen_len.shape, doc_len.shape, relative_pos.shape, embedding_pos.shape))
     return x, y, sen_len, doc_len, relative_pos, embedding_pos
-
 
 def acc_prf(pred_y, true_y, doc_len):
     tmp1, tmp2 = [], []
@@ -44,16 +43,16 @@ def batch_index(length, batch_size, test=False):
     index = list(range(length))
     if not test:
         random.shuffle(index)
+    ret_list = []
     for i in range(int((length + batch_size - 1) / batch_size)):
         ret = index[i * batch_size: (i + 1) * batch_size]
-        if not test and len(ret) < batch_size:
-            break
-        yield ret
-
+        # if not test and len(ret) < batch_size:
+        #     break
+        ret_list.append(ret)
+    return ret_list
 
 def get_weight_varible(name, shape):
     return tf.get_variable(name, initializer=tf.random_uniform(shape, -0.01, 0.01))
-
 
 def getmask(length, max_len, out_shape):
     '''
@@ -62,7 +61,6 @@ def getmask(length, max_len, out_shape):
     # 转换成 0 1
     ret = tf.cast(tf.sequence_mask(length, max_len), tf.float32)
     return tf.reshape(ret, out_shape)
-
 
 def biLSTM(inputs, length, n_hidden, scope):
     '''
