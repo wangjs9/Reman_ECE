@@ -137,19 +137,15 @@ def load_data(input_file, max_doc_len=max_doc_len, max_sen_len=max_sen_len):
             yes_clause += 1
             y_clause_cause[clause_idx] = [0,1]
 
-    x = np.array(x)
-    pk.dump(x, open(path + 'x.txt', 'wb'))
-    x_shape = x.shape
-    del x
-    relative_pos, y, sen_len, doc_len = map(np.array, [relative_pos, y, sen_len, doc_len])
+    relative_pos, x, y, sen_len, doc_len = map(np.array, [relative_pos, x, y, sen_len, doc_len])
     pk.dump(relative_pos, open(path + 'relative_pos.txt', 'wb'))
-
+    pk.dump(x, open(path + 'x.txt', 'wb'))
     pk.dump(y, open(path + 'y.txt', 'wb'))
     pk.dump(sen_len, open(path + 'sen_len.txt', 'wb'))
     pk.dump(doc_len, open(path + 'doc_len.txt', 'wb'))
 
     print('relative_pos.shape {}\nx.shape {} \ny.shape {} \nsen_len.shape {} \ndoc_len.shape {}\n'.format(
-        relative_pos.shape, x_shape, y.shape, sen_len.shape, doc_len.shape
+        relative_pos.shape, x.shape, y.shape, sen_len.shape, doc_len.shape
     ))
     print('n_clause {}, yes_clause {}, no_clause {}, n_cut {}'.format(n_clause, yes_clause, no_clause, n_cut))
     print('load data done!\n')
