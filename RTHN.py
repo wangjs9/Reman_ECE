@@ -8,7 +8,7 @@
 import numpy as np
 import transformer as trans
 import tensorflow as tf
-import sys, time
+import sys, time, os
 import utils.tf_funcs as func
 from sklearn.model_selection import KFold
 from sklearn.model_selection import ParameterGrid
@@ -27,7 +27,7 @@ tf.app.flags.DEFINE_integer('max_sen_len', 50, 'max number of tokens per sentenc
 tf.app.flags.DEFINE_integer('n_hidden', 100, 'number of hidden unit')
 tf.app.flags.DEFINE_integer('n_class', 2, 'number of distinct class')
 # >>>>>>>>>>>>>>>>>>>> For Data <<<<<<<<<<<<<<<<<<<< #
-tf.app.flags.DEFINE_string('log_file_name', '', 'name of log file')
+tf.app.flags.DEFINE_string('log_file_name', 'log', 'name of log file')
 # >>>>>>>>>>>>>>>>>>>> For Training <<<<<<<<<<<<<<<<<<<< #
 tf.app.flags.DEFINE_integer('training_iter', 20, 'number of train iter')
 tf.app.flags.DEFINE_string('scope', 'RNN', 'RNN scope')
@@ -38,10 +38,11 @@ tf.app.flags.DEFINE_float('lr_main', 0.001, 'learning rate')
 tf.app.flags.DEFINE_float('keep_prob1', 0.5, 'word embedding training dropout keep prob')
 tf.app.flags.DEFINE_float('keep_prob2', 1.0, 'softmax layer dropout keep prob')
 tf.app.flags.DEFINE_float('l2_reg', 1e-5, 'l2 regularization')
-tf.app.flags.DEFINE_integer('run_times', 10, 'run times of this model')
+tf.app.flags.DEFINE_integer('run_times', 3, 'run times of this model')
 tf.app.flags.DEFINE_integer('num_heads', 5, 'the num heads of attention')
 tf.app.flags.DEFINE_integer('n_layers', 2, 'the layers of transformer beside main')
-
+# >>>>>>>>>>>>>>>>>>>> For Save Path <<<<<<<<<<<<<<<<<<<< #
+tf.app.flags.DEFINE_string('save_path', './checkpoint', 'name of save path')
 
 def build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding, keep_prob1, keep_prob2, RNN=func.biLSTM):
     inputs = tf.reshape(x, [-1, FLAGS.max_sen_len, FLAGS.embedding_dim])
@@ -182,6 +183,7 @@ def run():
         kf, fold, SID = KFold(n_splits=10), 1, 0
         Id = []
         p_list, r_list, f1_list = [], [], []
+
         for train, test in kf.split(x_data):
             tr_x, tr_y, tr_sen_len, tr_doc_len, tr_word_dis = map(lambda x: x[train],
                 [x_data, y_data, sen_len_data, doc_len_data, word_distance])
@@ -191,8 +193,10 @@ def run():
 
             precision_list, recall_list, FF1_list = [], [], []
             pre_list, true_list, pre_list_prob = [], [], []
-
-            sess.run(tf.global_variables_initializer())
+            if os.path.exists(FLAGS.save_path+'/model.ckpt'):
+                saver.restore(sess, FLAGS.save_path+'/model.ckpt')
+            else:
+                sess.run(tf.global_variables_initializer())
             print('############# fold {} ###############'.format(fold))
             fold += 1
             max_f1 = 0.0
@@ -233,9 +237,9 @@ def run():
                             [optimizer, loss_op, pred_y_op, true_y_op, pred, doc_len],
                             feed_dict=dict(zip(placeholders, train)))
                         acc, p, r, f1 = func.acc_prf(pred_y, true_y, doc_len_batch)
-                        if step % 5 == 0:
+                        if step % 10 == 0:
                             print('epoch {}: step {}: loss {:.4f} acc {:.4f}'.format(epoch + 1, step, loss, acc))
-                            saver.save(sess, './checkpoint_dir/MyModel', global_step=step)
+                            saver.save(sess, FLAGS.save_path+'/model.ckpt')
                         step = step + 1
                     except:
                         break
