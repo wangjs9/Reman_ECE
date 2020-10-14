@@ -16,11 +16,11 @@ max_sen_len = 50
 
 
 def load_data():
-    x = pk.load(open(path + 'x.txt', 'rb'))
-    y = pk.load(open(path + 'y.txt', 'rb'))
-    sen_len = pk.load(open(path + 'sen_len.txt', 'rb'))
-    doc_len = pk.load(open(path + 'doc_len.txt', 'rb'))
-    relative_pos = pk.load(open(path + 'relative_pos.txt', 'rb'))
+    x = pk.load(open(path + 'x_4.txt', 'rb'))
+    y = pk.load(open(path + 'y_4.txt', 'rb'))
+    sen_len = pk.load(open(path + 'sen_len_4.txt', 'rb'))
+    doc_len = pk.load(open(path + 'doc_len_4.txt', 'rb'))
+    relative_pos = pk.load(open(path + 'relative_pos_4.txt', 'rb'))
     embedding_pos = pk.load(open(path + 'embedding_pos.txt', 'rb'))
     print('x.shape {} \ny.shape {} \nsen_len.shape {} \ndoc_len.shape {}\nrelative_pos.shape {}\nembedding_pos.shape {}'.format(x.shape, y.shape, sen_len.shape, doc_len.shape, relative_pos.shape, embedding_pos.shape))
     return x, y, sen_len, doc_len, relative_pos, embedding_pos
