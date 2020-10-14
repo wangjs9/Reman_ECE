@@ -1,9 +1,4 @@
 # -*- encoding:utf-8 -*-
-'''
-@time: 2019/05/31
-@author: mrzhang
-@email: zhangmengran@njust.edu.cn
-'''
 
 import numpy as np
 import transformer as trans
@@ -44,7 +39,7 @@ tf.app.flags.DEFINE_integer('n_layers', 2, 'the layers of transformer beside mai
 # >>>>>>>>>>>>>>>>>>>> For Save Path <<<<<<<<<<<<<<<<<<<< #
 tf.app.flags.DEFINE_string('save_path', './checkpoint', 'name of save path')
 
-def build_model(x, sen_len, doc_len, word_dis, word_embedding, pos_embedding, keep_prob1, keep_prob2, RNN=func.biLSTM):
+def build_model(x, sen_len, doc_len, word_dis, pos_embedding, keep_prob1, keep_prob2, RNN=func.biLSTM):
     inputs = tf.reshape(x, [-1, FLAGS.max_sen_len, FLAGS.embedding_dim])
     word_dis = tf.nn.embedding_lookup(pos_embedding, word_dis)
     sh2 = 2 * FLAGS.n_hidden
@@ -145,7 +140,7 @@ def run():
     keep_prob2 = tf.placeholder(tf.float32)
     placeholders = [x, y, sen_len, doc_len, word_dis, keep_prob1, keep_prob2]
 
-    pred, reg, pred_assist_list, reg_assist_list = build_model(x,sen_len, doc_len, word_dis, None, pos_embedding, keep_prob1, keep_prob2)
+    pred, reg, pred_assist_list, reg_assist_list = build_model(x,sen_len, doc_len, word_dis, pos_embedding, keep_prob1, keep_prob2)
 
     with tf.name_scope('loss'):
         valid_num = tf.cast(tf.reduce_sum(doc_len), dtype=tf.float32)
@@ -349,6 +344,33 @@ def main(_):
 
     for key, value in grid_search.items():
         print("Main: ", key, value)
+
+def predict():
+    tf.reset_default_graph()
+    localtime = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+    print("***********localtime: ", localtime)
+    x_data, y_data, sen_len_data, doc_len_data, word_distance, pos_embedding = func.load_data()
+
+    pos_embedding = tf.constant(pos_embedding, dtype=tf.float32, name='pos_embedding')
+    print('build model...')
+
+    start_time = time.time()
+    x = tf.placeholder(tf.float32, [None, FLAGS.max_doc_len, FLAGS.max_sen_len, FLAGS.embedding_dim])
+    y = tf.placeholder(tf.float32, [None, FLAGS.max_doc_len, FLAGS.n_class])
+    sen_len = tf.placeholder(tf.int32, [None, FLAGS.max_doc_len])
+    doc_len = tf.placeholder(tf.int32, [None])
+    word_dis = tf.placeholder(tf.int32, [None, FLAGS.max_doc_len, FLAGS.max_sen_len])
+    keep_prob1 = tf.placeholder(tf.float32)
+    keep_prob2 = tf.placeholder(tf.float32)
+    placeholders = [x, y, sen_len, doc_len, word_dis, keep_prob1, keep_prob2]
+
+    pred, reg, pred_assist_list, reg_assist_list = build_model(x, sen_len, doc_len, word_dis, pos_embedding, keep_prob1,
+                                                               keep_prob2)
+
+    tf_config = tf.ConfigProto()
+    tf_config.gpu_options.allow_growth = True
+    with tf.Session(config=tf_config) as sess:
+        print()
 
 if __name__ == '__main__':
     tf.app.run()
