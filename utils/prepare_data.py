@@ -2,8 +2,8 @@ import numpy as np
 import pandas as pd
 import re
 import pickle as pk
-path = '../reman/'
-
+# path = '../reman/'
+path = '../empatheticdialogues/'
 max_doc_len = 35
 max_sen_len = 50
 
@@ -79,8 +79,8 @@ def load_w2v(embedding_dim_pos):
 def load_data(input_file, max_doc_len=max_doc_len, max_sen_len=max_sen_len):
     """
     :param input_file:
-    :param max_doc_len:
-    :param max_sen_len:
+    :param max_doc_len: the max length of
+    :param max_sen_len: the max number of word in a sentence
     :return:
     """
     from transformers import BertTokenizer, BertModel
@@ -151,6 +151,82 @@ def load_data(input_file, max_doc_len=max_doc_len, max_sen_len=max_sen_len):
     print('load data done!\n')
     return x, y, sen_len, doc_len
 
-process_data(path+'reman-text.csv', path+'reman-ece.csv', path+'clause_keywords.csv', context=False)
+def load_test_data(input_file, max_doc_len=max_doc_len, max_sen_len=max_sen_len):
+    from transformers import BertTokenizer, BertModel
+    tokenizer = BertTokenizer.from_pretrained('bert-base-uncased', do_lower_case=True)
+    print('load data...')
+    relative_pos, x, y, sen_len, doc_len = [], [], [], [], []
+    y_clause_cause, clause_all, tmp_clause_len, relative_pos_all = np.zeros((max_doc_len, 2)), [], [], []
+    next_ID = 1
+    n_clause, yes_clause, no_clause, n_cut = [0] * 4
+
+    bert = BertModel.from_pretrained('bert-base-uncased', output_attentions=False,
+                                     output_hidden_states=False)
+    for param in bert.parameters():
+        param.requires_grad = False
+
+    data = pd.read_csv(input_file, sep='\t', encoding='UTF-8', header=0)
+    for index, line in data.iterrows():
+        n_clause += 1
+        senID, clause_no, label, context_w, emotion_w, chatbot_w, words = line
+        word_pos = clause_no + 69
+
+        if next_ID == senID:
+            doc_len.append(len(clause_all))
+            relative_pos_all = [array - clause_no for array in relative_pos_all]
+            for j in range(max_doc_len - len(clause_all)):
+                clause_all.append(np.zeros((max_sen_len, 768)))
+                tmp_clause_len.append(0)
+                relative_pos_all.append(np.zeros((max_sen_len,)))
+            relative_pos.append(relative_pos_all)
+            x.append(clause_all)
+            y.append(y_clause_cause)
+            sen_len.append(tmp_clause_len)
+            y_clause_cause, clause_all, tmp_clause_len, relative_pos_all = np.zeros((max_doc_len, 2)), [], [], []
+            next_ID = senID + 1
+
+
+        if not context_w and emotion_w:
+            doc_len.append(len(clause_all))
+            relative_pos_all = [array - clause_no for array in relative_pos_all]
+            for j in range(max_doc_len - len(clause_all)):
+                clause_all.append(np.zeros((max_sen_len, 768)))
+                tmp_clause_len.append(0)
+                relative_pos_all.append(np.zeros((max_sen_len,)))
+            relative_pos.append(relative_pos_all)
+            x.append(clause_all)
+            y.append(y_clause_cause)
+            sen_len.append(tmp_clause_len)
+            y_clause_cause, clause_all, tmp_clause_len, relative_pos_all = np.zeros((max_doc_len, 2)), [], [], []
+
+        encoded_dict = tokenizer.encode_plus(words,
+                         add_special_tokens=True,  # Add '[CLS]' and '[SEP]'
+                         max_length=max_sen_len,  # Pad & truncate all sentences.
+                         pad_to_max_length=True,
+                         return_attention_mask=True,  # Construct attn. masks.
+                         return_tensors='pt',  # Return pytorch tensors.
+                         truncation_strategy='longest_first')
+        clause, _ = bert(encoded_dict['input_ids'], token_type_ids=None, attention_mask=encoded_dict['attention_mask'])
+        relative_pos_clause = [word_pos] * max_sen_len
+        relative_pos_all.append(np.array(relative_pos_clause))
+        clause_all.append(clause.cpu().numpy()[0])
+        tmp_clause_len.append(sum(encoded_dict['attention_mask'][0]))
+
+    relative_pos, x, y, sen_len, doc_len = map(np.array, [relative_pos, x, y, sen_len, doc_len])
+    pk.dump(relative_pos, open(path + 'test_relative_pos.txt', 'wb'))
+    pk.dump(x, open(path + 'test_x_pred.txt', 'wb'))
+    pk.dump(y, open(path + 'test_y_pred.txt', 'wb'))
+    pk.dump(sen_len, open(path + 'test_sen_len_pred.txt', 'wb'))
+    pk.dump(doc_len, open(path + 'test_doc_len_pred.txt', 'wb'))
+
+    print('relative_pos.shape {}\nx.shape {} \ny.shape {} \nsen_len.shape {} \ndoc_len.shape {}\n'.format(
+        relative_pos.shape, x.shape, y.shape, sen_len.shape, doc_len.shape
+    ))
+    print('test_n_clause {}, test_yes_clause {}, test_no_clause {}, test_n_cut {}'.format(n_clause, yes_clause, no_clause, n_cut))
+    print('load test data done!\n')
+
+
+# process_data(path+'reman-text.csv', path+'reman-ece.csv', path+'clause_keywords.csv', context=False)
 # load_w2v(50)
-load_data(path+'clause_keywords.csv')
+# load_data(path+'clause_keywords.csv')
+load_test_data('../empatheticdialogues/clause_keywords.csv')
