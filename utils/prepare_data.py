@@ -151,14 +151,18 @@ def load_data(input_file, max_doc_len=max_doc_len, max_sen_len=max_sen_len):
     print('load data done!\n')
     return x, y, sen_len, doc_len
 
-def load_test_data(input_file, max_doc_len=max_doc_len, max_sen_len=max_sen_len):
+def load_test_data(input_file, round, max_doc_len=max_doc_len, max_sen_len=max_sen_len):
     from transformers import BertTokenizer, BertModel
     tokenizer = BertTokenizer.from_pretrained('bert-base-uncased', do_lower_case=True)
     print('load data...')
     relative_pos, x, y, sen_len, doc_len = [], [], [], [], []
     y_clause_cause, clause_all, tmp_clause_len, relative_pos_all = np.zeros((max_doc_len, 2)), [], [], []
-    next_ID = 1
-    n_clause, yes_clause, no_clause, n_cut = [0] * 4
+    round_ID = [1, 102, 202, 302, 402, 502, 602, 702, 802, 902, 1002, 1082, 1182, 1282, 1382, 1482, 1582]
+    round_up = [-1, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1080, 1180, 1280, 1380, 1480, 1580, 1680]
+    next_ID = round_ID[round]
+    up_id = round_up[round]
+    bottom_id = round_up[round+1]
+    n_clause = 0
 
     bert = BertModel.from_pretrained('bert-base-uncased', output_attentions=False,
                                      output_hidden_states=False)
@@ -171,6 +175,11 @@ def load_test_data(input_file, max_doc_len=max_doc_len, max_sen_len=max_sen_len)
         senID, clause_no, label, context_w, emotion_w, chatbot_w, words = line
         word_pos = clause_no + 69
 
+        if senID <= up_id:
+            continue
+        elif senID > bottom_id:
+            break
+
         if next_ID == senID:
             doc_len.append(len(clause_all))
             relative_pos_all = [array - clause_no for array in relative_pos_all]
@@ -180,9 +189,8 @@ def load_test_data(input_file, max_doc_len=max_doc_len, max_sen_len=max_sen_len)
                 relative_pos_all.append(np.zeros((max_sen_len,)))
             relative_pos.append(relative_pos_all)
             x.append(clause_all)
-            y.append(y_clause_cause)
             sen_len.append(tmp_clause_len)
-            y_clause_cause, clause_all, tmp_clause_len, relative_pos_all = np.zeros((max_doc_len, 2)), [], [], []
+            clause_all, tmp_clause_len, relative_pos_all = [], [], []
             next_ID = senID + 1
 
 
@@ -195,9 +203,8 @@ def load_test_data(input_file, max_doc_len=max_doc_len, max_sen_len=max_sen_len)
                 relative_pos_all.append(np.zeros((max_sen_len,)))
             relative_pos.append(relative_pos_all)
             x.append(clause_all)
-            y.append(y_clause_cause)
             sen_len.append(tmp_clause_len)
-            y_clause_cause, clause_all, tmp_clause_len, relative_pos_all = np.zeros((max_doc_len, 2)), [], [], []
+            clause_all, tmp_clause_len, relative_pos_all = [], [], []
 
         encoded_dict = tokenizer.encode_plus(words,
                          add_special_tokens=True,  # Add '[CLS]' and '[SEP]'
@@ -212,21 +219,22 @@ def load_test_data(input_file, max_doc_len=max_doc_len, max_sen_len=max_sen_len)
         clause_all.append(clause.cpu().numpy()[0])
         tmp_clause_len.append(sum(encoded_dict['attention_mask'][0]))
 
-    relative_pos, x, y, sen_len, doc_len = map(np.array, [relative_pos, x, y, sen_len, doc_len])
-    pk.dump(relative_pos, open(path + 'test_relative_pos.txt', 'wb'))
-    pk.dump(x, open(path + 'test_x_pred.txt', 'wb'))
-    pk.dump(y, open(path + 'test_y_pred.txt', 'wb'))
-    pk.dump(sen_len, open(path + 'test_sen_len_pred.txt', 'wb'))
-    pk.dump(doc_len, open(path + 'test_doc_len_pred.txt', 'wb'))
+    relative_pos, x, sen_len, doc_len = map(np.array, [relative_pos, x, sen_len, doc_len])
+    pk.dump(relative_pos, open(path + '{}-test_relative_pos.txt'.format(round+1), 'wb'))
+    pk.dump(x, open(path + '{}-test_x_pred.txt'.format(round+1), 'wb'))
+    pk.dump(sen_len, open(path + '{}-test_sen_len_pred.txt'.format(round+1), 'wb'))
+    pk.dump(doc_len, open(path + '{}-test_doc_len_pred.txt'.format(round+1), 'wb'))
 
-    print('relative_pos.shape {}\nx.shape {} \ny.shape {} \nsen_len.shape {} \ndoc_len.shape {}\n'.format(
-        relative_pos.shape, x.shape, y.shape, sen_len.shape, doc_len.shape
+    print('relative_pos.shape {}\nx.shape {} \nsen_len.shape {} \ndoc_len.shape {}\n'.format(
+        relative_pos.shape, x.shape, sen_len.shape, doc_len.shape
     ))
-    print('test_n_clause {}, test_yes_clause {}, test_no_clause {}, test_n_cut {}'.format(n_clause, yes_clause, no_clause, n_cut))
+    print('test_n_clause {}'.format(n_clause))
     print('load test data done!\n')
 
 
 # process_data(path+'reman-text.csv', path+'reman-ece.csv', path+'clause_keywords.csv', context=False)
 # load_w2v(50)
 # load_data(path+'clause_keywords.csv')
-load_test_data('../empatheticdialogues/clause_keywords.csv')
+for round in range(11, 17):
+    print('>>>>>>>>>> round {} >>>>>>>>>>'.format(round+1))
+    load_test_data('../empatheticdialogues/clause_keywords.csv', round)

@@ -4,6 +4,7 @@ import numpy as np
 import transformer as trans
 import tensorflow as tf
 import sys, time, os
+import pickle as pk
 import utils.tf_funcs as func
 from sklearn.model_selection import KFold
 from sklearn.model_selection import ParameterGrid
@@ -289,9 +290,14 @@ def print_training_info():
     print('training_iter-{}, scope-{}\n'.format(FLAGS.training_iter, FLAGS.scope))
 
 def get_batch_data(x, y, sen_len, doc_len, word_dis, keep_prob1, keep_prob2, batch_size, test=False):
-    for index in func.batch_index(len(y), batch_size, test):
-        feed_list = [x[index], y[index], sen_len[index], doc_len[index], word_dis[index], keep_prob1, keep_prob2]
-        yield feed_list, len(index)
+    if y == None:
+        for index in func.batch_index(len(word_dis), batch_size, test):
+            feed_list = [x[index], sen_len[index], doc_len[index], word_dis[index], keep_prob1, keep_prob2]
+            yield feed_list, len(index)
+    else:
+        for index in func.batch_index(len(y), batch_size, test):
+            feed_list = [x[index], y[index], sen_len[index], doc_len[index], word_dis[index], keep_prob1, keep_prob2]
+            yield feed_list, len(index)
 
 def senEncode_softmax(s_senEncode, w_varible, b_varible, n_feature, doc_len):
     s = tf.reshape(s_senEncode, [-1, n_feature])
@@ -307,70 +313,99 @@ def senEncode_softmax(s_senEncode, w_varible, b_varible, n_feature, doc_len):
 
 def trans_func(senEncode_dis, senEncode, n_feature, out_units, scope_var):
     senEncode_assist = trans.multihead_attention(queries=senEncode_dis,
-                                            keys=senEncode_dis,
-                                            values=senEncode,
-                                            units_query=n_feature,
-                                            num_heads=FLAGS.num_heads,
-                                            dropout_rate=0,
-                                            is_training=True,
-                                            scope=scope_var)
+                                keys=senEncode_dis,
+                                values=senEncode,
+                                units_query=n_feature,
+                                num_heads=FLAGS.num_heads,
+                                dropout_rate=0,
+                                is_training=True,
+                                scope=scope_var)
     senEncode_assist = trans.feedforward_1(senEncode_assist, n_feature, out_units)
     return senEncode_assist
 
 def main(_):
-    grid_search = {}
-    params = {"n_layers": [4, 5]}
+    TRAIN = False
+    TEST = True
+    if TRAIN:
+        grid_search = {}
+        params = {"n_layers": [4, 5]}
 
-    params_search = list(ParameterGrid(params))
+        params_search = list(ParameterGrid(params))
 
-    for i, param in enumerate(params_search):
-        print("*************params_search_{}*************".format(i + 1))
-        print(param)
-        for key, value in param.items():
-            setattr(FLAGS, key, value)
-        p_list, r_list, f1_list = [], [], []
-        for i in range(FLAGS.run_times):
-            print("*************run(){}*************".format(i + 1))
-            p, r, f1 = run()
-            p_list.append(p)
-            r_list.append(r)
-            f1_list.append(f1)
+        for i, param in enumerate(params_search):
+            print("*************params_search_{}*************".format(i + 1))
+            print(param)
+            for key, value in param.items():
+                setattr(FLAGS, key, value)
+            p_list, r_list, f1_list = [], [], []
+            for i in range(FLAGS.run_times):
+                print("*************run(){}*************".format(i + 1))
+                p, r, f1 = run()
+                p_list.append(p)
+                r_list.append(r)
+                f1_list.append(f1)
 
-        for i in range(FLAGS.run_times):
-            print(round(p_list[i], 4), round(r_list[i], 4), round(f1_list[i], 4))
-        print("avg_prf: ", np.mean(p_list), np.mean(r_list), np.mean(f1_list))
+            for i in range(FLAGS.run_times):
+                print(round(p_list[i], 4), round(r_list[i], 4), round(f1_list[i], 4))
+            print("avg_prf: ", np.mean(p_list), np.mean(r_list), np.mean(f1_list))
 
-        grid_search[str(param)] = {"PRF": [round(np.mean(p_list), 4), round(np.mean(r_list), 4), round(np.mean(f1_list), 4)]}
+            grid_search[str(param)] = {"PRF": [round(np.mean(p_list), 4), round(np.mean(r_list), 4), round(np.mean(f1_list), 4)]}
 
-    for key, value in grid_search.items():
-        print("Main: ", key, value)
+        for key, value in grid_search.items():
+            print("Main: ", key, value)
+    if TEST:
+        for i in range(17):
+            predict('./empatheticdialogues/', i+1)
 
-def predict():
+def predict(path, round):
     tf.reset_default_graph()
     localtime = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
     print("***********localtime: ", localtime)
-    x_data, y_data, sen_len_data, doc_len_data, word_distance, pos_embedding = func.load_data()
+    x_data, sen_len_data, doc_len_data, word_distance, pos_embedding = func.load_test_data(round)
 
     pos_embedding = tf.constant(pos_embedding, dtype=tf.float32, name='pos_embedding')
     print('build model...')
 
     start_time = time.time()
     x = tf.placeholder(tf.float32, [None, FLAGS.max_doc_len, FLAGS.max_sen_len, FLAGS.embedding_dim])
-    y = tf.placeholder(tf.float32, [None, FLAGS.max_doc_len, FLAGS.n_class])
     sen_len = tf.placeholder(tf.int32, [None, FLAGS.max_doc_len])
     doc_len = tf.placeholder(tf.int32, [None])
     word_dis = tf.placeholder(tf.int32, [None, FLAGS.max_doc_len, FLAGS.max_sen_len])
     keep_prob1 = tf.placeholder(tf.float32)
     keep_prob2 = tf.placeholder(tf.float32)
-    placeholders = [x, y, sen_len, doc_len, word_dis, keep_prob1, keep_prob2]
+    placeholders = [x, sen_len, doc_len, word_dis, keep_prob1, keep_prob2]
 
     pred, reg, pred_assist_list, reg_assist_list = build_model(x, sen_len, doc_len, word_dis, pos_embedding, keep_prob1,
                                                                keep_prob2)
 
+    pred_y_op = tf.argmax(pred, 2)
+    pred_y_assist_op_list = []
+    for i in range(FLAGS.n_layers - 1):
+        pred_y_assist_op = tf.argmax(pred_assist_list[i], 2)
+        pred_y_assist_op_list.append(pred_y_assist_op)
+
     tf_config = tf.ConfigProto()
     tf_config.gpu_options.allow_growth = True
+    saver = tf.train.Saver()
     with tf.Session(config=tf_config) as sess:
-        print()
+        pred_y_res = []
+        pred_prob_res = []
+        saver.restore(sess, FLAGS.save_path + '/model.ckpt')
+        data_generator = get_batch_data(x_data, None, sen_len_data, doc_len_data, word_distance, FLAGS.keep_prob1,
+                                        FLAGS.keep_prob2, FLAGS.batch_size)
+        while True:
+            try:
+                train, _ = next(data_generator)
+                pred_y, pred_prob, doc_len_batch = sess.run([pred_y_op, pred, doc_len],
+                    feed_dict=dict(zip(placeholders, train)))
+                pred_y_res.extend(pred_y)
+                pred_prob_res.extend(pred_prob)
+            except StopIteration:
+                break
+    pk.dump(pred_y_res, open(path + 'pred_{}_y.txt'.format(round), 'wb'))
+    pk.dump(pred_prob_res, open(path + 'pred_{}_prob.txt'.format(round), 'wb'))
+
+    print("running time: ", str((time.time() - start_time) / 60.))
 
 if __name__ == '__main__':
     tf.app.run()

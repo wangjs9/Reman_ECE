@@ -10,7 +10,8 @@ import tensorflow as tf
 import random
 import pickle as pk
 from sklearn.metrics import precision_score, recall_score, f1_score
-path = './reman/'
+# path = './reman/'
+path = './empatheticdialogues/'
 max_doc_len = 35
 max_sen_len = 50
 
@@ -24,6 +25,17 @@ def load_data():
     embedding_pos = pk.load(open(path + 'embedding_pos.txt', 'rb'))
     print('x.shape {} \ny.shape {} \nsen_len.shape {} \ndoc_len.shape {}\nrelative_pos.shape {}\nembedding_pos.shape {}'.format(x.shape, y.shape, sen_len.shape, doc_len.shape, relative_pos.shape, embedding_pos.shape))
     return x, y, sen_len, doc_len, relative_pos, embedding_pos
+
+def load_test_data(round):
+    x = pk.load(open(path + '{}-test_x_pred.txt'.format(round), 'rb'))
+    sen_len = pk.load(open(path + '{}-test_sen_len_pred.txt'.format(round), 'rb'))
+    doc_len = pk.load(open(path + '{}-test_doc_len_pred.txt'.format(round), 'rb'))
+    relative_pos = pk.load(open(path + '{}-test_relative_pos.txt'.format(round), 'rb'))
+    embedding_pos = pk.load(open(path + 'embedding_pos.txt', 'rb'))
+    print(
+        'x.shape {} \nsen_len.shape {} \ndoc_len.shape {}\nrelative_pos.shape {}\nembedding_pos.shape {}'.format(
+            x.shape, sen_len.shape, doc_len.shape, relative_pos.shape, embedding_pos.shape))
+    return x, sen_len, doc_len, relative_pos, embedding_pos
 
 def acc_prf(pred_y, true_y, doc_len):
     tmp1, tmp2 = [], []
