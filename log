@@ -1,0 +1,1783 @@
+***********localtime:  2020-10-08 18:46:07
+x.shape (399, 35, 50, 768) 
+y.shape (399, 35, 2) 
+sen_len.shape (399, 35) 
+doc_len.shape (399,)
+relative_pos.shape (399, 35, 50)
+embedding_pos.shape (103, 50)
+build model...
+build model done!
+
+
+
+>>>>>>>>>>>>>>>>>>>>TRAINING INFO:
+
+batch-32, learning_rate-0.001, keep_prob1-0.5, num_heads-5, n_layers-5
+training_iter-20, scope-RNN
+
+############# fold 1 ###############
+train docs: 359    test docs: 40
+GL1: epoch 1: step 10: loss 0.3853 acc 0.8760
+GL1: epoch 2: step 10: loss 0.3066 acc 0.8951
+GL1: epoch 3: step 10: loss 0.3067 acc 0.8904
+GL1: epoch 4: step 10: loss 0.3421 acc 0.8861
+GL1: epoch 5: step 10: loss 0.2579 acc 0.9088
+GL1: epoch 6: step 10: loss 0.2050 acc 0.9326
+GL1: epoch 7: step 10: loss 0.1346 acc 0.9495
+GL1: epoch 8: step 10: loss 0.1487 acc 0.9516
+GL1: epoch 9: step 10: loss 0.1458 acc 0.9481
+GL1: epoch 10: step 10: loss 0.1148 acc 0.9483
+GL1: epoch 11: step 10: loss 0.0924 acc 0.9628
+GL1: epoch 12: step 10: loss 0.0988 acc 0.9615
+GL1: epoch 13: step 10: loss 0.0685 acc 0.9745
+GL1: epoch 14: step 10: loss 0.0621 acc 0.9776
+GL1: epoch 15: step 10: loss 0.1073 acc 0.9608
+GL1: epoch 16: step 10: loss 0.0694 acc 0.9757
+GL1: epoch 17: step 10: loss 0.0438 acc 0.9759
+GL1: epoch 18: step 10: loss 0.0416 acc 0.9867
+GL1: epoch 19: step 10: loss 0.0878 acc 0.9651
+GL1: epoch 20: step 10: loss 0.0654 acc 0.9844
+GL2: epoch 1: step 10: loss 0.0127 acc 0.9962
+GL2: epoch 2: step 10: loss 0.0954 acc 0.9748
+GL2: epoch 3: step 10: loss 0.0264 acc 0.9933
+GL2: epoch 4: step 10: loss 0.0344 acc 0.9889
+GL2: epoch 5: step 10: loss 0.0347 acc 0.9881
+GL2: epoch 6: step 10: loss 0.0132 acc 1.0000
+GL2: epoch 7: step 10: loss 0.0469 acc 0.9888
+GL2: epoch 8: step 10: loss 0.0385 acc 0.9779
+GL2: epoch 9: step 10: loss 0.0240 acc 0.9867
+GL2: epoch 10: step 10: loss 0.0135 acc 0.9931
+GL2: epoch 11: step 10: loss 0.0158 acc 0.9931
+GL2: epoch 12: step 10: loss 0.0076 acc 0.9966
+GL2: epoch 13: step 10: loss 0.0217 acc 0.9892
+GL2: epoch 14: step 10: loss 0.0615 acc 0.9786
+GL2: epoch 15: step 10: loss 0.0363 acc 0.9825
+GL3: epoch 1: step 10: loss 0.0585 acc 0.9836
+GL3: epoch 2: step 10: loss 0.0783 acc 0.9690
+GL3: epoch 3: step 10: loss 0.0214 acc 0.9963
+GL3: epoch 4: step 10: loss 0.0063 acc 0.9966
+GL3: epoch 5: step 10: loss 0.0267 acc 0.9884
+GL3: epoch 6: step 10: loss 0.0206 acc 0.9895
+GL3: epoch 7: step 10: loss 0.0339 acc 0.9795
+GL3: epoch 8: step 10: loss 0.0286 acc 0.9866
+GL3: epoch 9: step 10: loss 0.0389 acc 0.9848
+GL3: epoch 10: step 10: loss 0.0186 acc 0.9891
+GL3: epoch 11: step 10: loss 0.0168 acc 0.9965
+GL3: epoch 12: step 10: loss 0.0371 acc 0.9813
+GL3: epoch 13: step 10: loss 0.0003 acc 1.0000
+GL3: epoch 14: step 10: loss 0.0146 acc 0.9922
+GL3: epoch 15: step 10: loss 0.0188 acc 0.9877
+GL4: epoch 1: step 10: loss 0.0124 acc 0.9917
+GL4: epoch 2: step 10: loss 0.0395 acc 0.9847
+GL4: epoch 3: step 10: loss 0.0308 acc 0.9803
+GL4: epoch 4: step 10: loss 0.0186 acc 0.9926
+GL4: epoch 5: step 10: loss 0.0004 acc 1.0000
+GL4: epoch 6: step 10: loss 0.0719 acc 0.9758
+GL4: epoch 7: step 10: loss 0.0380 acc 0.9858
+GL4: epoch 8: step 10: loss 0.0004 acc 1.0000
+GL4: epoch 9: step 10: loss 0.0312 acc 0.9839
+GL4: epoch 10: step 10: loss 0.0250 acc 0.9851
+GL4: epoch 11: step 10: loss 0.0139 acc 0.9933
+GL4: epoch 12: step 10: loss 0.0112 acc 0.9964
+GL4: epoch 13: step 10: loss 0.0060 acc 0.9965
+GL4: epoch 14: step 10: loss 0.0233 acc 0.9825
+GL4: epoch 15: step 10: loss 0.0178 acc 0.9843
+epoch 1: step 10: loss 0.0427 acc 0.9729
+
+test: epoch 1: loss 0.8170 acc 0.8542
+p: 0.9235 r: 0.9128 f1: 0.9181 max_f1 0.9181
+
+epoch 2: step 20: loss 0.0860 acc 0.9780
+
+test: epoch 2: loss 0.6433 acc 0.8073
+p: 0.9327 r: 0.8459 f1: 0.8872 max_f1 0.9181
+
+epoch 3: step 30: loss 0.0067 acc 0.9968
+
+test: epoch 3: loss 0.6843 acc 0.8385
+p: 0.9325 r: 0.8837 f1: 0.9075 max_f1 0.9181
+
+epoch 4: step 40: loss 0.0241 acc 0.9895
+
+test: epoch 4: loss 0.7504 acc 0.8698
+p: 0.9298 r: 0.9244 f1: 0.9271 max_f1 0.9271
+
+epoch 5: step 50: loss 0.0083 acc 1.0000
+epoch 5: step 60: loss 0.0008 acc 1.0000
+
+test: epoch 5: loss 0.7311 acc 0.8464
+p: 0.9305 r: 0.8953 f1: 0.9126 max_f1 0.9271
+
+epoch 6: step 70: loss 0.0126 acc 0.9932
+
+test: epoch 6: loss 0.8705 acc 0.8646
+p: 0.9294 r: 0.9186 f1: 0.9240 max_f1 0.9271
+
+epoch 7: step 80: loss 0.0203 acc 0.9886
+
+test: epoch 7: loss 0.6376 acc 0.8542
+p: 0.9235 r: 0.9128 f1: 0.9181 max_f1 0.9271
+
+epoch 8: step 90: loss 0.0161 acc 0.9904
+
+test: epoch 8: loss 0.7455 acc 0.8411
+p: 0.9301 r: 0.8895 f1: 0.9094 max_f1 0.9271
+
+epoch 9: step 100: loss 0.0307 acc 0.9823
+
+test: epoch 9: loss 0.7578 acc 0.8359
+p: 0.9297 r: 0.8837 f1: 0.9061 max_f1 0.9271
+
+epoch 10: step 110: loss 0.0363 acc 0.9835
+epoch 10: step 120: loss 0.0022 acc 1.0000
+
+test: epoch 10: loss 0.6734 acc 0.8802
+p: 0.9209 r: 0.9477 f1: 0.9341 max_f1 0.9341
+
+epoch 11: step 130: loss 0.0610 acc 0.9909
+
+test: epoch 11: loss 0.6750 acc 0.8880
+p: 0.9216 r: 0.9564 f1: 0.9387 max_f1 0.9387
+
+epoch 12: step 140: loss 0.0532 acc 0.9731
+
+test: epoch 12: loss 0.6335 acc 0.8698
+p: 0.9224 r: 0.9331 f1: 0.9277 max_f1 0.9387
+
+epoch 13: step 150: loss 0.0284 acc 0.9855
+
+test: epoch 13: loss 0.8647 acc 0.8542
+p: 0.9186 r: 0.9186 f1: 0.9186 max_f1 0.9387
+
+epoch 14: step 160: loss 0.0182 acc 0.9920
+
+test: epoch 14: loss 0.9221 acc 0.8594
+p: 0.9240 r: 0.9186 f1: 0.9213 max_f1 0.9387
+
+epoch 15: step 170: loss 0.0161 acc 0.9889
+epoch 15: step 180: loss 0.0233 acc 1.0000
+
+test: epoch 15: loss 0.8363 acc 0.8646
+p: 0.9220 r: 0.9273 f1: 0.9246 max_f1 0.9387
+
+epoch 16: step 190: loss 0.0207 acc 0.9929
+
+test: epoch 16: loss 0.6956 acc 0.8750
+p: 0.9205 r: 0.9419 f1: 0.9310 max_f1 0.9387
+
+epoch 17: step 200: loss 0.0227 acc 0.9845
+
+test: epoch 17: loss 0.7842 acc 0.8594
+p: 0.9240 r: 0.9186 f1: 0.9213 max_f1 0.9387
+
+epoch 18: step 210: loss 0.0510 acc 0.9799
+
+test: epoch 18: loss 0.8823 acc 0.8568
+p: 0.9238 r: 0.9157 f1: 0.9197 max_f1 0.9387
+
+epoch 19: step 220: loss 0.0047 acc 0.9965
+
+test: epoch 19: loss 0.5598 acc 0.8750
+p: 0.9205 r: 0.9419 f1: 0.9310 max_f1 0.9387
+
+epoch 20: step 230: loss 0.0495 acc 0.9852
+epoch 20: step 240: loss 0.0216 acc 0.9808
+
+test: epoch 20: loss 0.4336 acc 0.8958
+p: 0.9064 r: 0.9855 f1: 0.9443 max_f1 0.9443
+
+maxIndex: 19
+Optimization Finished!
+
+############# fold 2 ###############
+train docs: 359    test docs: 40
+GL1: epoch 1: step 10: loss 0.3765 acc 0.8774
+GL1: epoch 2: step 10: loss 0.3458 acc 0.8774
+GL1: epoch 3: step 10: loss 0.3308 acc 0.8590
+GL1: epoch 4: step 10: loss 0.2771 acc 0.8932
+GL1: epoch 5: step 10: loss 0.3212 acc 0.8761
+GL1: epoch 6: step 10: loss 0.2013 acc 0.9158
+GL1: epoch 7: step 10: loss 0.2505 acc 0.9031
+GL1: epoch 8: step 10: loss 0.1895 acc 0.9236
+GL1: epoch 9: step 10: loss 0.1198 acc 0.9634
+GL1: epoch 10: step 10: loss 0.1207 acc 0.9344
+GL1: epoch 11: step 10: loss 0.0827 acc 0.9689
+GL1: epoch 12: step 10: loss 0.1200 acc 0.9638
+GL1: epoch 13: step 10: loss 0.1427 acc 0.9428
+GL1: epoch 14: step 10: loss 0.0859 acc 0.9705
+GL1: epoch 15: step 10: loss 0.0854 acc 0.9723
+GL1: epoch 16: step 10: loss 0.0464 acc 0.9822
+GL1: epoch 17: step 10: loss 0.0589 acc 0.9793
+GL1: epoch 18: step 10: loss 0.0628 acc 0.9744
+GL1: epoch 19: step 10: loss 0.1326 acc 0.9567
+GL1: epoch 20: step 10: loss 0.0671 acc 0.9752
+GL2: epoch 1: step 10: loss 0.0554 acc 0.9793
+GL2: epoch 2: step 10: loss 0.0651 acc 0.9883
+GL2: epoch 3: step 10: loss 0.0259 acc 0.9920
+GL2: epoch 4: step 10: loss 0.0170 acc 0.9916
+GL2: epoch 5: step 10: loss 0.0524 acc 0.9771
+GL2: epoch 6: step 10: loss 0.0291 acc 0.9826
+GL2: epoch 7: step 10: loss 0.0591 acc 0.9731
+GL2: epoch 8: step 10: loss 0.0114 acc 0.9914
+GL2: epoch 9: step 10: loss 0.0625 acc 0.9795
+GL2: epoch 10: step 10: loss 0.0130 acc 0.9959
+GL2: epoch 11: step 10: loss 0.0426 acc 0.9822
+GL2: epoch 12: step 10: loss 0.0430 acc 0.9761
+GL2: epoch 13: step 10: loss 0.0935 acc 0.9800
+GL2: epoch 14: step 10: loss 0.0206 acc 0.9857
+GL2: epoch 15: step 10: loss 0.0288 acc 0.9792
+GL3: epoch 1: step 10: loss 0.0462 acc 0.9828
+GL3: epoch 2: step 10: loss 0.0143 acc 0.9962
+GL3: epoch 3: step 10: loss 0.0182 acc 0.9925
+GL3: epoch 4: step 10: loss 0.0376 acc 0.9839
+GL3: epoch 5: step 10: loss 0.0409 acc 0.9719
+GL3: epoch 6: step 10: loss 0.0563 acc 0.9567
+GL3: epoch 7: step 10: loss 0.0500 acc 0.9782
+GL3: epoch 8: step 10: loss 0.0191 acc 0.9958
+GL3: epoch 9: step 10: loss 0.0416 acc 0.9742
+GL3: epoch 10: step 10: loss 0.0452 acc 0.9718
+GL3: epoch 11: step 10: loss 0.0860 acc 0.9660
+GL3: epoch 12: step 10: loss 0.0392 acc 0.9762
+GL3: epoch 13: step 10: loss 0.0103 acc 0.9960
+GL3: epoch 14: step 10: loss 0.0306 acc 0.9745
+GL3: epoch 15: step 10: loss 0.0201 acc 0.9963
+GL4: epoch 1: step 10: loss 0.0186 acc 0.9921
+GL4: epoch 2: step 10: loss 0.0070 acc 0.9962
+GL4: epoch 3: step 10: loss 0.0112 acc 0.9922
+GL4: epoch 4: step 10: loss 0.0668 acc 0.9743
+GL4: epoch 5: step 10: loss 0.0122 acc 0.9959
+GL4: epoch 6: step 10: loss 0.0160 acc 0.9858
+GL4: epoch 7: step 10: loss 0.0181 acc 0.9924
+GL4: epoch 8: step 10: loss 0.0203 acc 0.9853
+GL4: epoch 9: step 10: loss 0.0454 acc 0.9846
+GL4: epoch 10: step 10: loss 0.0261 acc 0.9809
+GL4: epoch 11: step 10: loss 0.0301 acc 0.9801
+GL4: epoch 12: step 10: loss 0.0416 acc 0.9855
+GL4: epoch 13: step 10: loss 0.0122 acc 0.9963
+GL4: epoch 14: step 10: loss 0.0520 acc 0.9717
+GL4: epoch 15: step 10: loss 0.0878 acc 0.9741
+epoch 1: step 10: loss 0.0797 acc 0.9736
+
+test: epoch 1: loss 0.3258 acc 0.9436
+p: 0.9550 r: 0.9852 f1: 0.9699 max_f1 0.9699
+
+epoch 2: step 20: loss 0.0281 acc 0.9880
+
+test: epoch 2: loss 0.4864 acc 0.9261
+p: 0.9638 r: 0.9557 f1: 0.9597 max_f1 0.9699
+
+epoch 3: step 30: loss 0.0440 acc 0.9760
+
+test: epoch 3: loss 0.2430 acc 0.9280
+p: 0.9379 r: 0.9873 f1: 0.9620 max_f1 0.9699
+
+epoch 4: step 40: loss 0.0307 acc 0.9851
+
+test: epoch 4: loss 0.2958 acc 0.9163
+p: 0.9462 r: 0.9641 f1: 0.9551 max_f1 0.9699
+
+epoch 5: step 50: loss 0.0509 acc 0.9707
+epoch 5: step 60: loss 0.0222 acc 0.9841
+
+test: epoch 5: loss 0.4662 acc 0.9163
+p: 0.9462 r: 0.9641 f1: 0.9551 max_f1 0.9699
+
+epoch 6: step 70: loss 0.0541 acc 0.9703
+
+test: epoch 6: loss 0.2990 acc 0.9105
+p: 0.9496 r: 0.9536 f1: 0.9516 max_f1 0.9699
+
+epoch 7: step 80: loss 0.0320 acc 0.9850
+
+test: epoch 7: loss 0.5137 acc 0.9222
+p: 0.9540 r: 0.9620 f1: 0.9580 max_f1 0.9699
+
+epoch 8: step 90: loss 0.0295 acc 0.9803
+
+test: epoch 8: loss 0.3556 acc 0.9202
+p: 0.9616 r: 0.9515 f1: 0.9565 max_f1 0.9699
+
+epoch 9: step 100: loss 0.0272 acc 0.9886
+
+test: epoch 9: loss 0.5042 acc 0.9183
+p: 0.9596 r: 0.9515 f1: 0.9555 max_f1 0.9699
+
+epoch 10: step 110: loss 0.0178 acc 0.9887
+epoch 10: step 120: loss 0.0195 acc 1.0000
+
+test: epoch 10: loss 0.2832 acc 0.9241
+p: 0.9579 r: 0.9599 f1: 0.9589 max_f1 0.9699
+
+epoch 11: step 130: loss 0.0302 acc 0.9891
+
+test: epoch 11: loss 0.3160 acc 0.9144
+p: 0.9614 r: 0.9451 f1: 0.9532 max_f1 0.9699
+
+epoch 12: step 140: loss 0.0244 acc 0.9892
+
+test: epoch 12: loss 0.2647 acc 0.9319
+p: 0.9526 r: 0.9747 f1: 0.9635 max_f1 0.9699
+
+epoch 13: step 150: loss 0.0361 acc 0.9794
+
+test: epoch 13: loss 0.4352 acc 0.9241
+p: 0.9598 r: 0.9578 f1: 0.9588 max_f1 0.9699
+
+epoch 14: step 160: loss 0.0267 acc 0.9864
+
+test: epoch 14: loss 0.4100 acc 0.9261
+p: 0.9561 r: 0.9641 f1: 0.9601 max_f1 0.9699
+
+epoch 15: step 170: loss 0.0191 acc 0.9916
+epoch 15: step 180: loss 0.0011 acc 1.0000
+
+test: epoch 15: loss 0.3898 acc 0.9339
+p: 0.9564 r: 0.9726 f1: 0.9644 max_f1 0.9699
+
+epoch 16: step 190: loss 0.0408 acc 0.9728
+
+test: epoch 16: loss 0.6041 acc 0.9319
+p: 0.9621 r: 0.9641 f1: 0.9631 max_f1 0.9699
+
+epoch 17: step 200: loss 0.0135 acc 1.0000
+
+test: epoch 17: loss 0.2625 acc 0.9397
+p: 0.9644 r: 0.9705 f1: 0.9674 max_f1 0.9699
+
+epoch 18: step 210: loss 0.0783 acc 0.9728
+
+test: epoch 18: loss 0.3471 acc 0.9280
+p: 0.9619 r: 0.9599 f1: 0.9609 max_f1 0.9699
+
+epoch 19: step 220: loss 0.0541 acc 0.9758
+
+test: epoch 19: loss 0.2647 acc 0.9339
+p: 0.9527 r: 0.9768 f1: 0.9646 max_f1 0.9699
+
+epoch 20: step 230: loss 0.0121 acc 0.9926
+epoch 20: step 240: loss 0.0238 acc 0.9804
+
+test: epoch 20: loss 0.3642 acc 0.9339
+p: 0.9641 r: 0.9641 f1: 0.9641 max_f1 0.9699
+
+maxIndex: 0
+Optimization Finished!
+
+############# fold 3 ###############
+train docs: 359    test docs: 40
+GL1: epoch 1: step 10: loss 0.3487 acc 0.8897
+GL1: epoch 2: step 10: loss 0.3132 acc 0.8994
+GL1: epoch 3: step 10: loss 0.3264 acc 0.8845
+GL1: epoch 4: step 10: loss 0.2788 acc 0.8839
+GL1: epoch 5: step 10: loss 0.1946 acc 0.9138
+GL1: epoch 6: step 10: loss 0.2162 acc 0.9135
+GL1: epoch 7: step 10: loss 0.2022 acc 0.9135
+GL1: epoch 8: step 10: loss 0.1397 acc 0.9371
+GL1: epoch 9: step 10: loss 0.1107 acc 0.9685
+GL1: epoch 10: step 10: loss 0.0811 acc 0.9709
+GL1: epoch 11: step 10: loss 0.0976 acc 0.9631
+GL1: epoch 12: step 10: loss 0.1914 acc 0.9264
+GL1: epoch 13: step 10: loss 0.1131 acc 0.9503
+GL1: epoch 14: step 10: loss 0.0659 acc 0.9720
+GL1: epoch 15: step 10: loss 0.1135 acc 0.9609
+GL1: epoch 16: step 10: loss 0.0872 acc 0.9697
+GL1: epoch 17: step 10: loss 0.0723 acc 0.9716
+GL1: epoch 18: step 10: loss 0.0885 acc 0.9627
+GL1: epoch 19: step 10: loss 0.0612 acc 0.9712
+GL1: epoch 20: step 10: loss 0.0501 acc 0.9784
+GL2: epoch 1: step 10: loss 0.0258 acc 0.9895
+GL2: epoch 2: step 10: loss 0.0231 acc 0.9928
+GL2: epoch 3: step 10: loss 0.0667 acc 0.9778
+GL2: epoch 4: step 10: loss 0.0216 acc 0.9970
+GL2: epoch 5: step 10: loss 0.0280 acc 0.9931
+GL2: epoch 6: step 10: loss 0.0385 acc 0.9933
+GL2: epoch 7: step 10: loss 0.0178 acc 0.9935
+GL2: epoch 8: step 10: loss 0.0346 acc 0.9834
+GL2: epoch 9: step 10: loss 0.0351 acc 0.9847
+GL2: epoch 10: step 10: loss 0.0131 acc 0.9931
+GL2: epoch 11: step 10: loss 0.0471 acc 0.9802
+GL2: epoch 12: step 10: loss 0.0234 acc 0.9887
+GL2: epoch 13: step 10: loss 0.0435 acc 0.9810
+GL2: epoch 14: step 10: loss 0.0180 acc 0.9906
+GL2: epoch 15: step 10: loss 0.0260 acc 0.9859
+GL3: epoch 1: step 10: loss 0.0186 acc 0.9966
+GL3: epoch 2: step 10: loss 0.0273 acc 0.9903
+GL3: epoch 3: step 10: loss 0.0145 acc 0.9899
+GL3: epoch 4: step 10: loss 0.0226 acc 0.9880
+GL3: epoch 5: step 10: loss 0.0378 acc 0.9792
+GL3: epoch 6: step 10: loss 0.0615 acc 0.9776
+GL3: epoch 7: step 10: loss 0.0215 acc 0.9859
+GL3: epoch 8: step 10: loss 0.0084 acc 0.9930
+GL3: epoch 9: step 10: loss 0.0354 acc 0.9841
+GL3: epoch 10: step 10: loss 0.0053 acc 0.9963
+GL3: epoch 11: step 10: loss 0.0244 acc 0.9863
+GL3: epoch 12: step 10: loss 0.0280 acc 0.9932
+GL3: epoch 13: step 10: loss 0.0396 acc 0.9670
+GL3: epoch 14: step 10: loss 0.0449 acc 0.9863
+GL3: epoch 15: step 10: loss 0.0253 acc 0.9922
+GL4: epoch 1: step 10: loss 0.0931 acc 0.9804
+GL4: epoch 2: step 10: loss 0.0565 acc 0.9854
+GL4: epoch 3: step 10: loss 0.0160 acc 1.0000
+GL4: epoch 4: step 10: loss 0.0337 acc 0.9845
+GL4: epoch 5: step 10: loss 0.0177 acc 0.9968
+GL4: epoch 6: step 10: loss 0.0271 acc 0.9930
+GL4: epoch 7: step 10: loss 0.0218 acc 0.9875
+GL4: epoch 8: step 10: loss 0.0384 acc 0.9785
+GL4: epoch 9: step 10: loss 0.0299 acc 0.9731
+GL4: epoch 10: step 10: loss 0.0319 acc 0.9833
+GL4: epoch 11: step 10: loss 0.0305 acc 0.9811
+GL4: epoch 12: step 10: loss 0.0127 acc 0.9903
+GL4: epoch 13: step 10: loss 0.0163 acc 0.9900
+GL4: epoch 14: step 10: loss 0.0203 acc 0.9927
+GL4: epoch 15: step 10: loss 0.0211 acc 0.9932
+epoch 1: step 10: loss 0.0075 acc 1.0000
+
+test: epoch 1: loss 0.2779 acc 0.9263
+p: 0.9477 r: 0.9699 f1: 0.9587 max_f1 0.9587
+
+epoch 2: step 20: loss 0.0203 acc 0.9858
+
+test: epoch 2: loss 0.2708 acc 0.9263
+p: 0.9477 r: 0.9699 f1: 0.9587 max_f1 0.9587
+
+epoch 3: step 30: loss 0.0356 acc 0.9855
+
+test: epoch 3: loss 0.2920 acc 0.9115
+p: 0.9559 r: 0.9431 f1: 0.9495 max_f1 0.9587
+
+epoch 4: step 40: loss 0.0381 acc 0.9787
+
+test: epoch 4: loss 0.3516 acc 0.8909
+p: 0.9549 r: 0.9197 f1: 0.9370 max_f1 0.9587
+
+epoch 5: step 50: loss 0.0428 acc 0.9820
+epoch 5: step 60: loss 0.0161 acc 1.0000
+
+test: epoch 5: loss 0.3039 acc 0.9086
+p: 0.9323 r: 0.9666 f1: 0.9491 max_f1 0.9587
+
+epoch 6: step 70: loss 0.0167 acc 0.9943
+
+test: epoch 6: loss 0.3014 acc 0.9086
+p: 0.9467 r: 0.9498 f1: 0.9482 max_f1 0.9587
+
+epoch 7: step 80: loss 0.0288 acc 0.9834
+
+test: epoch 7: loss 0.4038 acc 0.9056
+p: 0.9211 r: 0.9766 f1: 0.9481 max_f1 0.9587
+
+epoch 8: step 90: loss 0.0138 acc 0.9910
+
+test: epoch 8: loss 0.2675 acc 0.9233
+p: 0.9627 r: 0.9498 f1: 0.9562 max_f1 0.9587
+
+epoch 9: step 100: loss 0.0187 acc 0.9843
+
+test: epoch 9: loss 0.3818 acc 0.9204
+p: 0.9359 r: 0.9766 f1: 0.9558 max_f1 0.9587
+
+epoch 10: step 110: loss 0.0205 acc 0.9899
+epoch 10: step 120: loss 0.0412 acc 0.9692
+
+test: epoch 10: loss 0.2566 acc 0.9204
+p: 0.9359 r: 0.9766 f1: 0.9558 max_f1 0.9587
+
+epoch 11: step 130: loss 0.0129 acc 0.9924
+
+test: epoch 11: loss 0.3101 acc 0.9204
+p: 0.9658 r: 0.9431 f1: 0.9543 max_f1 0.9587
+
+epoch 12: step 140: loss 0.0095 acc 1.0000
+
+test: epoch 12: loss 0.3344 acc 0.9174
+p: 0.9562 r: 0.9498 f1: 0.9530 max_f1 0.9587
+
+epoch 13: step 150: loss 0.0179 acc 0.9915
+
+test: epoch 13: loss 0.2341 acc 0.9204
+p: 0.9564 r: 0.9532 f1: 0.9548 max_f1 0.9587
+
+epoch 14: step 160: loss 0.0157 acc 0.9907
+
+test: epoch 14: loss 0.3102 acc 0.9204
+p: 0.9444 r: 0.9666 f1: 0.9554 max_f1 0.9587
+
+epoch 15: step 170: loss 0.0488 acc 0.9719
+epoch 15: step 180: loss 0.0265 acc 0.9841
+
+test: epoch 15: loss 0.4882 acc 0.9204
+p: 0.9626 r: 0.9465 f1: 0.9545 max_f1 0.9587
+
+epoch 16: step 190: loss 0.0271 acc 0.9862
+
+test: epoch 16: loss 0.2182 acc 0.9115
+p: 0.9590 r: 0.9398 f1: 0.9493 max_f1 0.9587
+
+epoch 17: step 200: loss 0.0586 acc 0.9759
+
+test: epoch 17: loss 0.3837 acc 0.9204
+p: 0.9444 r: 0.9666 f1: 0.9554 max_f1 0.9587
+
+epoch 18: step 210: loss 0.0179 acc 0.9790
+
+test: epoch 18: loss 0.3185 acc 0.9086
+p: 0.9527 r: 0.9431 f1: 0.9479 max_f1 0.9587
+
+epoch 19: step 220: loss 0.0289 acc 0.9764
+
+test: epoch 19: loss 0.4954 acc 0.9233
+p: 0.9389 r: 0.9766 f1: 0.9574 max_f1 0.9587
+
+epoch 20: step 230: loss 0.0255 acc 0.9844
+epoch 20: step 240: loss 0.0181 acc 1.0000
+
+test: epoch 20: loss 0.4099 acc 0.9204
+p: 0.9474 r: 0.9632 f1: 0.9552 max_f1 0.9587
+
+maxIndex: 0
+Optimization Finished!
+
+############# fold 4 ###############
+train docs: 359    test docs: 40
+GL1: epoch 1: step 10: loss 0.3510 acc 0.8923
+GL1: epoch 2: step 10: loss 0.2936 acc 0.9009
+GL1: epoch 3: step 10: loss 0.3515 acc 0.8792
+GL1: epoch 4: step 10: loss 0.2570 acc 0.8900
+GL1: epoch 5: step 10: loss 0.2001 acc 0.8877
+GL1: epoch 6: step 10: loss 0.2585 acc 0.9057
+GL1: epoch 7: step 10: loss 0.2009 acc 0.9078
+GL1: epoch 8: step 10: loss 0.1787 acc 0.9198
+GL1: epoch 9: step 10: loss 0.2210 acc 0.9239
+GL1: epoch 10: step 10: loss 0.1438 acc 0.9430
+GL1: epoch 11: step 10: loss 0.1483 acc 0.9388
+GL1: epoch 12: step 10: loss 0.1077 acc 0.9486
+GL1: epoch 13: step 10: loss 0.0941 acc 0.9609
+GL1: epoch 14: step 10: loss 0.0673 acc 0.9747
+GL1: epoch 15: step 10: loss 0.0563 acc 0.9764
+GL1: epoch 16: step 10: loss 0.0650 acc 0.9730
+GL1: epoch 17: step 10: loss 0.0650 acc 0.9820
+GL1: epoch 18: step 10: loss 0.0458 acc 0.9836
+GL1: epoch 19: step 10: loss 0.0718 acc 0.9682
+GL1: epoch 20: step 10: loss 0.0794 acc 0.9628
+GL2: epoch 1: step 10: loss 0.0483 acc 0.9846
+GL2: epoch 2: step 10: loss 0.0656 acc 0.9670
+GL2: epoch 3: step 10: loss 0.0586 acc 0.9796
+GL2: epoch 4: step 10: loss 0.1004 acc 0.9669
+GL2: epoch 5: step 10: loss 0.0615 acc 0.9685
+GL2: epoch 6: step 10: loss 0.0363 acc 0.9870
+GL2: epoch 7: step 10: loss 0.0382 acc 0.9858
+GL2: epoch 8: step 10: loss 0.0233 acc 0.9895
+GL2: epoch 9: step 10: loss 0.0162 acc 0.9934
+GL2: epoch 10: step 10: loss 0.0264 acc 0.9880
+GL2: epoch 11: step 10: loss 0.0266 acc 0.9931
+GL2: epoch 12: step 10: loss 0.0107 acc 0.9964
+GL2: epoch 13: step 10: loss 0.0409 acc 0.9799
+GL2: epoch 14: step 10: loss 0.0528 acc 0.9715
+GL2: epoch 15: step 10: loss 0.0328 acc 0.9828
+GL3: epoch 1: step 10: loss 0.0467 acc 0.9851
+GL3: epoch 2: step 10: loss 0.0327 acc 0.9857
+GL3: epoch 3: step 10: loss 0.0560 acc 0.9712
+GL3: epoch 4: step 10: loss 0.0100 acc 0.9931
+GL3: epoch 5: step 10: loss 0.0353 acc 0.9779
+GL3: epoch 6: step 10: loss 0.0615 acc 0.9739
+GL3: epoch 7: step 10: loss 0.0419 acc 0.9748
+GL3: epoch 8: step 10: loss 0.0908 acc 0.9785
+GL3: epoch 9: step 10: loss 0.0279 acc 0.9887
+GL3: epoch 10: step 10: loss 0.0367 acc 0.9824
+GL3: epoch 11: step 10: loss 0.0267 acc 0.9811
+GL3: epoch 12: step 10: loss 0.0414 acc 0.9758
+GL3: epoch 13: step 10: loss 0.0224 acc 0.9931
+GL3: epoch 14: step 10: loss 0.0288 acc 0.9880
+GL3: epoch 15: step 10: loss 0.0341 acc 0.9811
+GL4: epoch 1: step 10: loss 0.0658 acc 0.9713
+GL4: epoch 2: step 10: loss 0.0534 acc 0.9811
+GL4: epoch 3: step 10: loss 0.0220 acc 0.9924
+GL4: epoch 4: step 10: loss 0.0559 acc 0.9816
+GL4: epoch 5: step 10: loss 0.0078 acc 0.9962
+GL4: epoch 6: step 10: loss 0.0307 acc 0.9901
+GL4: epoch 7: step 10: loss 0.0533 acc 0.9855
+GL4: epoch 8: step 10: loss 0.0153 acc 0.9901
+GL4: epoch 9: step 10: loss 0.0361 acc 0.9852
+GL4: epoch 10: step 10: loss 0.0274 acc 0.9848
+GL4: epoch 11: step 10: loss 0.0175 acc 0.9908
+GL4: epoch 12: step 10: loss 0.0236 acc 0.9888
+GL4: epoch 13: step 10: loss 0.0375 acc 0.9831
+GL4: epoch 14: step 10: loss 0.0131 acc 0.9928
+GL4: epoch 15: step 10: loss 0.0282 acc 0.9826
+epoch 1: step 10: loss 0.0203 acc 0.9924
+
+test: epoch 1: loss 0.6581 acc 0.8644
+p: 0.9057 r: 0.9412 f1: 0.9231 max_f1 0.9231
+
+epoch 2: step 20: loss 0.1280 acc 0.9424
+
+test: epoch 2: loss 0.6285 acc 0.8610
+p: 0.8963 r: 0.9490 f1: 0.9219 max_f1 0.9231
+
+epoch 3: step 30: loss 0.0411 acc 0.9861
+
+test: epoch 3: loss 0.6381 acc 0.8441
+p: 0.9130 r: 0.9059 f1: 0.9094 max_f1 0.9231
+
+epoch 4: step 40: loss 0.0397 acc 0.9775
+
+test: epoch 4: loss 0.4686 acc 0.8475
+p: 0.9134 r: 0.9098 f1: 0.9116 max_f1 0.9231
+
+epoch 5: step 50: loss 0.0296 acc 0.9892
+epoch 5: step 60: loss 0.0254 acc 0.9844
+
+test: epoch 5: loss 0.7156 acc 0.8475
+p: 0.9167 r: 0.9059 f1: 0.9112 max_f1 0.9231
+
+epoch 6: step 70: loss 0.0107 acc 0.9928
+
+test: epoch 6: loss 0.7311 acc 0.8644
+p: 0.9057 r: 0.9412 f1: 0.9231 max_f1 0.9231
+
+epoch 7: step 80: loss 0.0308 acc 0.9963
+
+test: epoch 7: loss 0.6526 acc 0.8746
+p: 0.9067 r: 0.9529 f1: 0.9293 max_f1 0.9293
+
+epoch 8: step 90: loss 0.0258 acc 0.9933
+
+test: epoch 8: loss 0.5937 acc 0.8576
+p: 0.9144 r: 0.9216 f1: 0.9180 max_f1 0.9293
+
+epoch 9: step 100: loss 0.0125 acc 0.9934
+
+test: epoch 9: loss 0.7842 acc 0.8712
+p: 0.8917 r: 0.9686 f1: 0.9286 max_f1 0.9293
+
+epoch 10: step 110: loss 0.0310 acc 0.9832
+epoch 10: step 120: loss 0.0308 acc 0.9836
+
+test: epoch 10: loss 0.7300 acc 0.8407
+p: 0.9094 r: 0.9059 f1: 0.9077 max_f1 0.9293
+
+epoch 11: step 130: loss 0.0166 acc 0.9927
+
+test: epoch 11: loss 0.4913 acc 0.8441
+p: 0.9130 r: 0.9059 f1: 0.9094 max_f1 0.9293
+
+epoch 12: step 140: loss 0.0261 acc 0.9905
+
+test: epoch 12: loss 0.7366 acc 0.8373
+p: 0.9157 r: 0.8941 f1: 0.9048 max_f1 0.9293
+
+epoch 13: step 150: loss 0.0031 acc 1.0000
+
+test: epoch 13: loss 0.6007 acc 0.8542
+p: 0.9109 r: 0.9216 f1: 0.9162 max_f1 0.9293
+
+epoch 14: step 160: loss 0.0170 acc 0.9906
+
+test: epoch 14: loss 0.6014 acc 0.8339
+p: 0.9187 r: 0.8863 f1: 0.9022 max_f1 0.9293
+
+epoch 15: step 170: loss 0.0233 acc 0.9930
+epoch 15: step 180: loss 0.0001 acc 1.0000
+
+test: epoch 15: loss 0.6780 acc 0.8305
+p: 0.9116 r: 0.8902 f1: 0.9008 max_f1 0.9293
+
+epoch 16: step 190: loss 0.0124 acc 0.9929
+
+test: epoch 16: loss 0.8115 acc 0.8610
+p: 0.9084 r: 0.9333 f1: 0.9207 max_f1 0.9293
+
+epoch 17: step 200: loss 0.0163 acc 0.9878
+
+test: epoch 17: loss 0.5285 acc 0.8508
+p: 0.9105 r: 0.9176 f1: 0.9141 max_f1 0.9293
+
+epoch 18: step 210: loss 0.0225 acc 0.9829
+
+test: epoch 18: loss 0.8565 acc 0.8712
+p: 0.9064 r: 0.9490 f1: 0.9272 max_f1 0.9293
+
+epoch 19: step 220: loss 0.0003 acc 1.0000
+
+test: epoch 19: loss 0.5903 acc 0.8610
+p: 0.9115 r: 0.9294 f1: 0.9204 max_f1 0.9293
+
+epoch 20: step 230: loss 0.0122 acc 0.9964
+epoch 20: step 240: loss 0.1068 acc 0.9531
+
+test: epoch 20: loss 0.6800 acc 0.8712
+p: 0.9033 r: 0.9529 f1: 0.9275 max_f1 0.9293
+
+maxIndex: 6
+Optimization Finished!
+
+############# fold 5 ###############
+train docs: 359    test docs: 40
+GL1: epoch 1: step 10: loss 0.3587 acc 0.8881
+GL1: epoch 2: step 10: loss 0.3146 acc 0.8832
+GL1: epoch 3: step 10: loss 0.2891 acc 0.8881
+GL1: epoch 4: step 10: loss 0.2513 acc 0.8792
+GL1: epoch 5: step 10: loss 0.2159 acc 0.9209
+GL1: epoch 6: step 10: loss 0.1505 acc 0.9489
+GL1: epoch 7: step 10: loss 0.1162 acc 0.9532
+GL1: epoch 8: step 10: loss 0.1358 acc 0.9452
+GL1: epoch 9: step 10: loss 0.1315 acc 0.9360
+GL1: epoch 10: step 10: loss 0.0914 acc 0.9632
+GL1: epoch 11: step 10: loss 0.1611 acc 0.9359
+GL1: epoch 12: step 10: loss 0.0412 acc 0.9774
+GL1: epoch 13: step 10: loss 0.1133 acc 0.9522
+GL1: epoch 14: step 10: loss 0.0860 acc 0.9631
+GL1: epoch 15: step 10: loss 0.0615 acc 0.9829
+GL1: epoch 16: step 10: loss 0.0795 acc 0.9785
+GL1: epoch 17: step 10: loss 0.1026 acc 0.9544
+GL1: epoch 18: step 10: loss 0.0345 acc 0.9837
+GL1: epoch 19: step 10: loss 0.0449 acc 0.9736
+GL1: epoch 20: step 10: loss 0.0510 acc 0.9718
+GL2: epoch 1: step 10: loss 0.0460 acc 0.9857
+GL2: epoch 2: step 10: loss 0.0519 acc 0.9867
+GL2: epoch 3: step 10: loss 0.0360 acc 0.9823
+GL2: epoch 4: step 10: loss 0.0699 acc 0.9775
+GL2: epoch 5: step 10: loss 0.0525 acc 0.9837
+GL2: epoch 6: step 10: loss 0.0360 acc 0.9864
+GL2: epoch 7: step 10: loss 0.0304 acc 0.9808
+GL2: epoch 8: step 10: loss 0.0506 acc 0.9831
+GL2: epoch 9: step 10: loss 0.0145 acc 0.9922
+GL2: epoch 10: step 10: loss 0.0246 acc 0.9878
+GL2: epoch 11: step 10: loss 0.0128 acc 0.9963
+GL2: epoch 12: step 10: loss 0.0246 acc 0.9899
+GL2: epoch 13: step 10: loss 0.0092 acc 0.9966
+GL2: epoch 14: step 10: loss 0.0231 acc 0.9891
+GL2: epoch 15: step 10: loss 0.0178 acc 0.9901
+GL3: epoch 1: step 10: loss 0.0944 acc 0.9748
+GL3: epoch 2: step 10: loss 0.0462 acc 0.9790
+GL3: epoch 3: step 10: loss 0.0353 acc 0.9891
+GL3: epoch 4: step 10: loss 0.0371 acc 0.9763
+GL3: epoch 5: step 10: loss 0.0574 acc 0.9859
+GL3: epoch 6: step 10: loss 0.0152 acc 0.9900
+GL3: epoch 7: step 10: loss 0.0157 acc 0.9934
+GL3: epoch 8: step 10: loss 0.0149 acc 0.9930
+GL3: epoch 9: step 10: loss 0.0188 acc 0.9940
+GL3: epoch 10: step 10: loss 0.0306 acc 0.9832
+GL3: epoch 11: step 10: loss 0.0524 acc 0.9691
+GL3: epoch 12: step 10: loss 0.0133 acc 0.9885
+GL3: epoch 13: step 10: loss 0.0375 acc 0.9795
+GL3: epoch 14: step 10: loss 0.0384 acc 0.9735
+GL3: epoch 15: step 10: loss 0.0317 acc 0.9858
+GL4: epoch 1: step 10: loss 0.0232 acc 0.9926
+GL4: epoch 2: step 10: loss 0.0175 acc 0.9928
+GL4: epoch 3: step 10: loss 0.0048 acc 0.9961
+GL4: epoch 4: step 10: loss 0.0215 acc 0.9818
+GL4: epoch 5: step 10: loss 0.0120 acc 0.9963
+GL4: epoch 6: step 10: loss 0.0269 acc 0.9869
+GL4: epoch 7: step 10: loss 0.0376 acc 0.9856
+GL4: epoch 8: step 10: loss 0.0167 acc 0.9963
+GL4: epoch 9: step 10: loss 0.0270 acc 0.9836
+GL4: epoch 10: step 10: loss 0.0094 acc 0.9933
+GL4: epoch 11: step 10: loss 0.0180 acc 0.9866
+GL4: epoch 12: step 10: loss 0.0352 acc 0.9850
+GL4: epoch 13: step 10: loss 0.0698 acc 0.9777
+GL4: epoch 14: step 10: loss 0.0487 acc 0.9791
+GL4: epoch 15: step 10: loss 0.0215 acc 0.9895
+epoch 1: step 10: loss 0.0476 acc 0.9828
+
+test: epoch 1: loss 1.0513 acc 0.8362
+p: 0.9020 r: 0.9091 f1: 0.9055 max_f1 0.9055
+
+epoch 2: step 20: loss 0.0004 acc 1.0000
+
+test: epoch 2: loss 1.0058 acc 0.8635
+p: 0.8763 r: 0.9802 f1: 0.9254 max_f1 0.9254
+
+epoch 3: step 30: loss 0.0189 acc 0.9881
+
+test: epoch 3: loss 0.8736 acc 0.8601
+p: 0.8955 r: 0.9486 f1: 0.9213 max_f1 0.9254
+
+epoch 4: step 40: loss 0.0274 acc 0.9851
+
+test: epoch 4: loss 1.2520 acc 0.8396
+p: 0.9023 r: 0.9130 f1: 0.9077 max_f1 0.9254
+
+epoch 5: step 50: loss 0.0164 acc 0.9901
+epoch 5: step 60: loss 0.0030 acc 1.0000
+
+test: epoch 5: loss 1.0874 acc 0.8123
+p: 0.9057 r: 0.8735 f1: 0.8893 max_f1 0.9254
+
+epoch 6: step 70: loss 0.0481 acc 0.9738
+
+test: epoch 6: loss 0.8798 acc 0.8055
+p: 0.8952 r: 0.8775 f1: 0.8862 max_f1 0.9254
+
+epoch 7: step 80: loss 0.0417 acc 0.9720
+
+test: epoch 7: loss 1.0229 acc 0.8123
+p: 0.9057 r: 0.8735 f1: 0.8893 max_f1 0.9254
+
+epoch 8: step 90: loss 0.0093 acc 0.9943
+
+test: epoch 8: loss 0.8103 acc 0.8328
+p: 0.9048 r: 0.9012 f1: 0.9030 max_f1 0.9254
+
+epoch 9: step 100: loss 0.0158 acc 0.9966
+
+test: epoch 9: loss 0.9412 acc 0.8294
+p: 0.9044 r: 0.8972 f1: 0.9008 max_f1 0.9254
+
+epoch 10: step 110: loss 0.0375 acc 0.9860
+epoch 10: step 120: loss 0.0315 acc 0.9863
+
+test: epoch 10: loss 0.9497 acc 0.8328
+p: 0.9048 r: 0.9012 f1: 0.9030 max_f1 0.9254
+
+epoch 11: step 130: loss 0.0279 acc 0.9888
+
+test: epoch 11: loss 0.9922 acc 0.8396
+p: 0.9055 r: 0.9091 f1: 0.9073 max_f1 0.9254
+
+epoch 12: step 140: loss 0.0271 acc 0.9855
+
+test: epoch 12: loss 1.1054 acc 0.8396
+p: 0.8992 r: 0.9170 f1: 0.9080 max_f1 0.9254
+
+epoch 13: step 150: loss 0.0240 acc 0.9880
+
+test: epoch 13: loss 0.7447 acc 0.8430
+p: 0.8996 r: 0.9209 f1: 0.9102 max_f1 0.9254
+
+epoch 14: step 160: loss 0.0264 acc 0.9774
+
+test: epoch 14: loss 0.9467 acc 0.8396
+p: 0.8992 r: 0.9170 f1: 0.9080 max_f1 0.9254
+
+epoch 15: step 170: loss 0.0312 acc 0.9807
+epoch 15: step 180: loss 0.0004 acc 1.0000
+
+test: epoch 15: loss 1.1520 acc 0.8362
+p: 0.8988 r: 0.9130 f1: 0.9059 max_f1 0.9254
+
+epoch 16: step 190: loss 0.0277 acc 0.9865
+
+test: epoch 16: loss 1.0601 acc 0.8328
+p: 0.8984 r: 0.9091 f1: 0.9037 max_f1 0.9254
+
+epoch 17: step 200: loss 0.0297 acc 0.9893
+
+test: epoch 17: loss 0.9268 acc 0.8328
+p: 0.8984 r: 0.9091 f1: 0.9037 max_f1 0.9254
+
+epoch 18: step 210: loss 0.0352 acc 0.9719
+
+test: epoch 18: loss 1.2784 acc 0.8396
+p: 0.8992 r: 0.9170 f1: 0.9080 max_f1 0.9254
+
+epoch 19: step 220: loss 0.0386 acc 0.9860
+
+test: epoch 19: loss 1.1399 acc 0.8396
+p: 0.8992 r: 0.9170 f1: 0.9080 max_f1 0.9254
+
+epoch 20: step 230: loss 0.0205 acc 0.9817
+epoch 20: step 240: loss 0.0102 acc 1.0000
+
+test: epoch 20: loss 0.8784 acc 0.8498
+p: 0.9066 r: 0.9209 f1: 0.9137 max_f1 0.9254
+
+maxIndex: 1
+Optimization Finished!
+
+############# fold 6 ###############
+train docs: 359    test docs: 40
+GL1: epoch 1: step 10: loss 0.3562 acc 0.8897
+GL1: epoch 2: step 10: loss 0.3201 acc 0.8828
+GL1: epoch 3: step 10: loss 0.2868 acc 0.8779
+GL1: epoch 4: step 10: loss 0.2404 acc 0.8904
+GL1: epoch 5: step 10: loss 0.2469 acc 0.8961
+GL1: epoch 6: step 10: loss 0.2098 acc 0.9421
+GL1: epoch 7: step 10: loss 0.1609 acc 0.9369
+GL1: epoch 8: step 10: loss 0.2023 acc 0.9170
+GL1: epoch 9: step 10: loss 0.1307 acc 0.9467
+GL1: epoch 10: step 10: loss 0.1061 acc 0.9647
+GL1: epoch 11: step 10: loss 0.1104 acc 0.9627
+GL1: epoch 12: step 10: loss 0.1760 acc 0.9204
+GL1: epoch 13: step 10: loss 0.0502 acc 0.9834
+GL1: epoch 14: step 10: loss 0.0911 acc 0.9690
+GL1: epoch 15: step 10: loss 0.1173 acc 0.9597
+GL1: epoch 16: step 10: loss 0.0659 acc 0.9754
+GL1: epoch 17: step 10: loss 0.0681 acc 0.9620
+GL1: epoch 18: step 10: loss 0.0617 acc 0.9866
+GL1: epoch 19: step 10: loss 0.0630 acc 0.9819
+GL1: epoch 20: step 10: loss 0.0689 acc 0.9783
+GL2: epoch 1: step 10: loss 0.0350 acc 0.9857
+GL2: epoch 2: step 10: loss 0.0263 acc 0.9920
+GL2: epoch 3: step 10: loss 0.0305 acc 0.9898
+GL2: epoch 4: step 10: loss 0.0361 acc 0.9849
+GL2: epoch 5: step 10: loss 0.0071 acc 1.0000
+GL2: epoch 6: step 10: loss 0.0309 acc 0.9843
+GL2: epoch 7: step 10: loss 0.0335 acc 0.9867
+GL2: epoch 8: step 10: loss 0.0401 acc 0.9789
+GL2: epoch 9: step 10: loss 0.0587 acc 0.9900
+GL2: epoch 10: step 10: loss 0.0304 acc 0.9851
+GL2: epoch 11: step 10: loss 0.0381 acc 0.9799
+GL2: epoch 12: step 10: loss 0.0396 acc 0.9803
+GL2: epoch 13: step 10: loss 0.0484 acc 0.9769
+GL2: epoch 14: step 10: loss 0.0378 acc 0.9864
+GL2: epoch 15: step 10: loss 0.0244 acc 0.9963
+GL3: epoch 1: step 10: loss 0.0176 acc 0.9909
+GL3: epoch 2: step 10: loss 0.0226 acc 0.9932
+GL3: epoch 3: step 10: loss 0.0599 acc 0.9805
+GL3: epoch 4: step 10: loss 0.0497 acc 0.9858
+GL3: epoch 5: step 10: loss 0.0231 acc 0.9853
+GL3: epoch 6: step 10: loss 0.0216 acc 0.9913
+GL3: epoch 7: step 10: loss 0.0320 acc 0.9853
+GL3: epoch 8: step 10: loss 0.0109 acc 0.9930
+GL3: epoch 9: step 10: loss 0.0318 acc 0.9843
+GL3: epoch 10: step 10: loss 0.0203 acc 0.9817
+GL3: epoch 11: step 10: loss 0.0531 acc 0.9720
+GL3: epoch 12: step 10: loss 0.0297 acc 0.9844
+GL3: epoch 13: step 10: loss 0.0215 acc 0.9866
+GL3: epoch 14: step 10: loss 0.0112 acc 0.9923
+GL3: epoch 15: step 10: loss 0.0017 acc 1.0000
+GL4: epoch 1: step 10: loss 0.0160 acc 0.9965
+GL4: epoch 2: step 10: loss 0.0511 acc 0.9795
+GL4: epoch 3: step 10: loss 0.0319 acc 0.9857
+GL4: epoch 4: step 10: loss 0.0336 acc 0.9821
+GL4: epoch 5: step 10: loss 0.0175 acc 0.9922
+GL4: epoch 6: step 10: loss 0.0213 acc 0.9918
+GL4: epoch 7: step 10: loss 0.0004 acc 1.0000
+GL4: epoch 8: step 10: loss 0.0198 acc 0.9965
+GL4: epoch 9: step 10: loss 0.0060 acc 0.9959
+GL4: epoch 10: step 10: loss 0.0179 acc 0.9891
+GL4: epoch 11: step 10: loss 0.0344 acc 0.9806
+GL4: epoch 12: step 10: loss 0.0325 acc 0.9858
+GL4: epoch 13: step 10: loss 0.0302 acc 0.9811
+GL4: epoch 14: step 10: loss 0.0139 acc 1.0000
+GL4: epoch 15: step 10: loss 0.0297 acc 0.9822
+epoch 1: step 10: loss 0.0923 acc 0.9608
+
+test: epoch 1: loss 0.5232 acc 0.8850
+p: 0.9062 r: 0.9699 f1: 0.9370 max_f1 0.9370
+
+epoch 2: step 20: loss 0.0285 acc 0.9826
+
+test: epoch 2: loss 0.5826 acc 0.8673
+p: 0.9349 r: 0.9130 f1: 0.9239 max_f1 0.9370
+
+epoch 3: step 30: loss 0.0209 acc 0.9932
+
+test: epoch 3: loss 0.5248 acc 0.8407
+p: 0.9329 r: 0.8829 f1: 0.9072 max_f1 0.9370
+
+epoch 4: step 40: loss 0.0174 acc 0.9964
+
+test: epoch 4: loss 0.3937 acc 0.8230
+p: 0.9345 r: 0.8595 f1: 0.8955 max_f1 0.9370
+
+epoch 5: step 50: loss 0.0301 acc 0.9850
+epoch 5: step 60: loss 0.0005 acc 1.0000
+
+test: epoch 5: loss 0.4909 acc 0.8614
+p: 0.9257 r: 0.9164 f1: 0.9210 max_f1 0.9370
+
+epoch 6: step 70: loss 0.0258 acc 1.0000
+
+test: epoch 6: loss 0.4826 acc 0.8171
+p: 0.9405 r: 0.8462 f1: 0.8908 max_f1 0.9370
+
+epoch 7: step 80: loss 0.0503 acc 0.9785
+
+test: epoch 7: loss 0.5458 acc 0.8820
+p: 0.9137 r: 0.9565 f1: 0.9346 max_f1 0.9370
+
+epoch 8: step 90: loss 0.0202 acc 0.9957
+
+test: epoch 8: loss 0.5971 acc 0.8673
+p: 0.9123 r: 0.9398 f1: 0.9259 max_f1 0.9370
+
+epoch 9: step 100: loss 0.0262 acc 0.9831
+
+test: epoch 9: loss 0.6085 acc 0.8584
+p: 0.9313 r: 0.9064 f1: 0.9186 max_f1 0.9370
+
+epoch 10: step 110: loss 0.0152 acc 0.9897
+epoch 10: step 120: loss 0.0230 acc 0.9868
+
+test: epoch 10: loss 0.7278 acc 0.8496
+p: 0.9218 r: 0.9064 f1: 0.9140 max_f1 0.9370
+
+epoch 11: step 130: loss 0.0282 acc 0.9821
+
+test: epoch 11: loss 0.6632 acc 0.8643
+p: 0.9288 r: 0.9164 f1: 0.9226 max_f1 0.9370
+
+epoch 12: step 140: loss 0.0078 acc 0.9962
+
+test: epoch 12: loss 0.4237 acc 0.7758
+p: 0.9627 r: 0.7759 f1: 0.8593 max_f1 0.9370
+
+epoch 13: step 150: loss 0.0240 acc 0.9832
+
+test: epoch 13: loss 0.6715 acc 0.8643
+p: 0.9347 r: 0.9097 f1: 0.9220 max_f1 0.9370
+
+epoch 14: step 160: loss 0.0178 acc 0.9893
+
+test: epoch 14: loss 0.4964 acc 0.8702
+p: 0.9293 r: 0.9231 f1: 0.9262 max_f1 0.9370
+
+epoch 15: step 170: loss 0.0201 acc 0.9867
+epoch 15: step 180: loss 0.0006 acc 1.0000
+
+test: epoch 15: loss 0.4702 acc 0.8525
+p: 0.9278 r: 0.9030 f1: 0.9153 max_f1 0.9370
+
+epoch 16: step 190: loss 0.0247 acc 0.9819
+
+test: epoch 16: loss 0.7979 acc 0.8437
+p: 0.9241 r: 0.8963 f1: 0.9100 max_f1 0.9370
+
+epoch 17: step 200: loss 0.0144 acc 0.9922
+
+test: epoch 17: loss 0.4526 acc 0.8260
+p: 0.9380 r: 0.8595 f1: 0.8970 max_f1 0.9370
+
+epoch 18: step 210: loss 0.0288 acc 0.9863
+
+test: epoch 18: loss 0.6753 acc 0.8584
+p: 0.9142 r: 0.9264 f1: 0.9203 max_f1 0.9370
+
+epoch 19: step 220: loss 0.0290 acc 0.9815
+
+test: epoch 19: loss 0.4844 acc 0.8407
+p: 0.9268 r: 0.8896 f1: 0.9078 max_f1 0.9370
+
+epoch 20: step 230: loss 0.0162 acc 0.9902
+epoch 20: step 240: loss 0.0007 acc 1.0000
+
+test: epoch 20: loss 0.6905 acc 0.8260
+p: 0.9348 r: 0.8629 f1: 0.8974 max_f1 0.9370
+
+maxIndex: 0
+Optimization Finished!
+
+############# fold 7 ###############
+train docs: 359    test docs: 40
+GL1: epoch 1: step 10: loss 0.3737 acc 0.8845
+GL1: epoch 2: step 10: loss 0.2970 acc 0.8961
+GL1: epoch 3: step 10: loss 0.3268 acc 0.8760
+GL1: epoch 4: step 10: loss 0.2648 acc 0.8868
+GL1: epoch 5: step 10: loss 0.2363 acc 0.9225
+GL1: epoch 6: step 10: loss 0.2272 acc 0.9167
+GL1: epoch 7: step 10: loss 0.2321 acc 0.9181
+GL1: epoch 8: step 10: loss 0.1465 acc 0.9258
+GL1: epoch 9: step 10: loss 0.1277 acc 0.9429
+GL1: epoch 10: step 10: loss 0.2114 acc 0.9317
+GL1: epoch 11: step 10: loss 0.1315 acc 0.9294
+GL1: epoch 12: step 10: loss 0.0608 acc 0.9776
+GL1: epoch 13: step 10: loss 0.0583 acc 0.9857
+GL1: epoch 14: step 10: loss 0.1620 acc 0.9484
+GL1: epoch 15: step 10: loss 0.1019 acc 0.9651
+GL1: epoch 16: step 10: loss 0.0756 acc 0.9623
+GL1: epoch 17: step 10: loss 0.0589 acc 0.9656
+GL1: epoch 18: step 10: loss 0.0662 acc 0.9701
+GL1: epoch 19: step 10: loss 0.0423 acc 0.9886
+GL1: epoch 20: step 10: loss 0.1081 acc 0.9446
+GL2: epoch 1: step 10: loss 0.0886 acc 0.9622
+GL2: epoch 2: step 10: loss 0.0202 acc 0.9931
+GL2: epoch 3: step 10: loss 0.0263 acc 0.9968
+GL2: epoch 4: step 10: loss 0.0396 acc 0.9880
+GL2: epoch 5: step 10: loss 0.0740 acc 0.9774
+GL2: epoch 6: step 10: loss 0.0328 acc 0.9848
+GL2: epoch 7: step 10: loss 0.0269 acc 0.9902
+GL2: epoch 8: step 10: loss 0.0746 acc 0.9686
+GL2: epoch 9: step 10: loss 0.0377 acc 0.9862
+GL2: epoch 10: step 10: loss 0.0569 acc 0.9803
+GL2: epoch 11: step 10: loss 0.0303 acc 0.9894
+GL2: epoch 12: step 10: loss 0.0244 acc 0.9937
+GL2: epoch 13: step 10: loss 0.0592 acc 0.9669
+GL2: epoch 14: step 10: loss 0.0148 acc 0.9962
+GL2: epoch 15: step 10: loss 0.0499 acc 0.9761
+GL3: epoch 1: step 10: loss 0.0241 acc 0.9927
+GL3: epoch 2: step 10: loss 0.0269 acc 0.9862
+GL3: epoch 3: step 10: loss 0.0775 acc 0.9630
+GL3: epoch 4: step 10: loss 0.0241 acc 0.9887
+GL3: epoch 5: step 10: loss 0.0342 acc 0.9783
+GL3: epoch 6: step 10: loss 0.0462 acc 0.9839
+GL3: epoch 7: step 10: loss 0.0108 acc 0.9964
+GL3: epoch 8: step 10: loss 0.0436 acc 0.9709
+GL3: epoch 9: step 10: loss 0.0120 acc 1.0000
+GL3: epoch 10: step 10: loss 0.0389 acc 0.9812
+GL3: epoch 11: step 10: loss 0.0337 acc 0.9850
+GL3: epoch 12: step 10: loss 0.0265 acc 0.9898
+GL3: epoch 13: step 10: loss 0.0395 acc 0.9822
+GL3: epoch 14: step 10: loss 0.0257 acc 0.9863
+GL3: epoch 15: step 10: loss 0.0302 acc 0.9794
+GL4: epoch 1: step 10: loss 0.0919 acc 0.9694
+GL4: epoch 2: step 10: loss 0.0243 acc 0.9864
+GL4: epoch 3: step 10: loss 0.0374 acc 0.9769
+GL4: epoch 4: step 10: loss 0.0206 acc 0.9936
+GL4: epoch 5: step 10: loss 0.0326 acc 0.9786
+GL4: epoch 6: step 10: loss 0.0101 acc 1.0000
+GL4: epoch 7: step 10: loss 0.0570 acc 0.9779
+GL4: epoch 8: step 10: loss 0.0224 acc 0.9894
+GL4: epoch 9: step 10: loss 0.0338 acc 0.9792
+GL4: epoch 10: step 10: loss 0.0211 acc 0.9876
+GL4: epoch 11: step 10: loss 0.0268 acc 0.9808
+GL4: epoch 12: step 10: loss 0.0176 acc 0.9963
+GL4: epoch 13: step 10: loss 0.0313 acc 0.9792
+GL4: epoch 14: step 10: loss 0.0279 acc 0.9891
+GL4: epoch 15: step 10: loss 0.0417 acc 0.9737
+epoch 1: step 10: loss 0.0204 acc 0.9893
+
+test: epoch 1: loss 0.5490 acc 0.9024
+p: 0.9288 r: 0.9631 f1: 0.9456 max_f1 0.9456
+
+epoch 2: step 20: loss 0.0412 acc 0.9802
+
+test: epoch 2: loss 0.4685 acc 0.8935
+p: 0.9396 r: 0.9396 f1: 0.9396 max_f1 0.9456
+
+epoch 3: step 30: loss 0.0434 acc 0.9737
+
+test: epoch 3: loss 0.8132 acc 0.9024
+p: 0.9373 r: 0.9530 f1: 0.9451 max_f1 0.9456
+
+epoch 4: step 40: loss 0.0115 acc 0.9922
+
+test: epoch 4: loss 0.4212 acc 0.8964
+p: 0.9458 r: 0.9362 f1: 0.9410 max_f1 0.9456
+
+epoch 5: step 50: loss 0.0286 acc 0.9924
+epoch 5: step 60: loss 0.0269 acc 0.9839
+
+test: epoch 5: loss 0.3867 acc 0.9083
+p: 0.9435 r: 0.9530 f1: 0.9482 max_f1 0.9482
+
+epoch 6: step 70: loss 0.0080 acc 0.9962
+
+test: epoch 6: loss 0.6386 acc 0.8964
+p: 0.9428 r: 0.9396 f1: 0.9412 max_f1 0.9482
+
+epoch 7: step 80: loss 0.0195 acc 0.9880
+
+test: epoch 7: loss 0.6989 acc 0.8876
+p: 0.9392 r: 0.9329 f1: 0.9360 max_f1 0.9482
+
+epoch 8: step 90: loss 0.0088 acc 0.9938
+
+test: epoch 8: loss 0.5509 acc 0.8964
+p: 0.9398 r: 0.9430 f1: 0.9414 max_f1 0.9482
+
+epoch 9: step 100: loss 0.0303 acc 0.9717
+
+test: epoch 9: loss 0.7164 acc 0.8846
+p: 0.9390 r: 0.9295 f1: 0.9342 max_f1 0.9482
+
+epoch 10: step 110: loss 0.0231 acc 0.9827
+epoch 10: step 120: loss 0.0246 acc 0.9844
+
+test: epoch 10: loss 1.0750 acc 0.8964
+p: 0.9428 r: 0.9396 f1: 0.9412 max_f1 0.9482
+
+epoch 11: step 130: loss 0.0200 acc 0.9894
+
+test: epoch 11: loss 0.6777 acc 0.9024
+p: 0.9402 r: 0.9497 f1: 0.9449 max_f1 0.9482
+
+epoch 12: step 140: loss 0.0520 acc 0.9727
+
+test: epoch 12: loss 0.5934 acc 0.8935
+p: 0.9281 r: 0.9530 f1: 0.9404 max_f1 0.9482
+
+epoch 13: step 150: loss 0.0284 acc 0.9817
+
+test: epoch 13: loss 0.5864 acc 0.8964
+p: 0.9369 r: 0.9463 f1: 0.9416 max_f1 0.9482
+
+epoch 14: step 160: loss 0.0362 acc 0.9833
+
+test: epoch 14: loss 0.7480 acc 0.8876
+p: 0.9452 r: 0.9262 f1: 0.9356 max_f1 0.9482
+
+epoch 15: step 170: loss 0.0221 acc 0.9859
+epoch 15: step 180: loss 0.0705 acc 0.9531
+
+test: epoch 15: loss 0.4723 acc 0.8994
+p: 0.9314 r: 0.9564 f1: 0.9437 max_f1 0.9482
+
+epoch 16: step 190: loss 0.0220 acc 0.9873
+
+test: epoch 16: loss 0.7583 acc 0.8994
+p: 0.9371 r: 0.9497 f1: 0.9433 max_f1 0.9482
+
+epoch 17: step 200: loss 0.0139 acc 0.9961
+
+test: epoch 17: loss 0.6768 acc 0.8935
+p: 0.9367 r: 0.9430 f1: 0.9398 max_f1 0.9482
+
+epoch 18: step 210: loss 0.0253 acc 0.9854
+
+test: epoch 18: loss 0.7156 acc 0.8905
+p: 0.9394 r: 0.9362 f1: 0.9378 max_f1 0.9482
+
+epoch 19: step 220: loss 0.0216 acc 0.9885
+
+test: epoch 19: loss 0.6031 acc 0.8994
+p: 0.9521 r: 0.9329 f1: 0.9424 max_f1 0.9482
+
+epoch 20: step 230: loss 0.0325 acc 0.9856
+epoch 20: step 240: loss 0.0001 acc 1.0000
+
+test: epoch 20: loss 0.6544 acc 0.8964
+p: 0.9340 r: 0.9497 f1: 0.9418 max_f1 0.9482
+
+maxIndex: 4
+Optimization Finished!
+
+############# fold 8 ###############
+train docs: 359    test docs: 40
+GL1: epoch 1: step 10: loss 0.3531 acc 0.8828
+GL1: epoch 2: step 10: loss 0.3544 acc 0.8725
+GL1: epoch 3: step 10: loss 0.3486 acc 0.8699
+GL1: epoch 4: step 10: loss 0.2775 acc 0.8819
+GL1: epoch 5: step 10: loss 0.2060 acc 0.9258
+GL1: epoch 6: step 10: loss 0.2206 acc 0.9261
+GL1: epoch 7: step 10: loss 0.1776 acc 0.9381
+GL1: epoch 8: step 10: loss 0.1404 acc 0.9425
+GL1: epoch 9: step 10: loss 0.1153 acc 0.9519
+GL1: epoch 10: step 10: loss 0.1405 acc 0.9533
+GL1: epoch 11: step 10: loss 0.1438 acc 0.9412
+GL1: epoch 12: step 10: loss 0.1102 acc 0.9547
+GL1: epoch 13: step 10: loss 0.0886 acc 0.9806
+GL1: epoch 14: step 10: loss 0.0873 acc 0.9553
+GL1: epoch 15: step 10: loss 0.1614 acc 0.9432
+GL1: epoch 16: step 10: loss 0.1161 acc 0.9544
+GL1: epoch 17: step 10: loss 0.0619 acc 0.9655
+GL1: epoch 18: step 10: loss 0.0835 acc 0.9668
+GL1: epoch 19: step 10: loss 0.0371 acc 0.9831
+GL1: epoch 20: step 10: loss 0.0537 acc 0.9760
+GL2: epoch 1: step 10: loss 0.0531 acc 0.9786
+GL2: epoch 2: step 10: loss 0.0532 acc 0.9696
+GL2: epoch 3: step 10: loss 0.0325 acc 0.9863
+GL2: epoch 4: step 10: loss 0.0248 acc 0.9927
+GL2: epoch 5: step 10: loss 0.0481 acc 0.9737
+GL2: epoch 6: step 10: loss 0.0441 acc 0.9764
+GL2: epoch 7: step 10: loss 0.0320 acc 0.9844
+GL2: epoch 8: step 10: loss 0.0081 acc 1.0000
+GL2: epoch 9: step 10: loss 0.0505 acc 0.9763
+GL2: epoch 10: step 10: loss 0.0284 acc 0.9937
+GL2: epoch 11: step 10: loss 0.0438 acc 0.9831
+GL2: epoch 12: step 10: loss 0.0414 acc 0.9746
+GL2: epoch 13: step 10: loss 0.0507 acc 0.9790
+GL2: epoch 14: step 10: loss 0.0230 acc 0.9932
+GL2: epoch 15: step 10: loss 0.0426 acc 0.9743
+GL3: epoch 1: step 10: loss 0.1166 acc 0.9669
+GL3: epoch 2: step 10: loss 0.0317 acc 0.9861
+GL3: epoch 3: step 10: loss 0.0238 acc 0.9870
+GL3: epoch 4: step 10: loss 0.0314 acc 0.9827
+GL3: epoch 5: step 10: loss 0.0614 acc 0.9706
+GL3: epoch 6: step 10: loss 0.0265 acc 0.9863
+GL3: epoch 7: step 10: loss 0.0097 acc 0.9962
+GL3: epoch 8: step 10: loss 0.0237 acc 0.9899
+GL3: epoch 9: step 10: loss 0.0306 acc 0.9810
+GL3: epoch 10: step 10: loss 0.0163 acc 0.9865
+GL3: epoch 11: step 10: loss 0.0111 acc 0.9965
+GL3: epoch 12: step 10: loss 0.0442 acc 0.9807
+GL3: epoch 13: step 10: loss 0.0229 acc 0.9852
+GL3: epoch 14: step 10: loss 0.0056 acc 1.0000
+GL3: epoch 15: step 10: loss 0.0794 acc 0.9736
+GL4: epoch 1: step 10: loss 0.0442 acc 0.9863
+GL4: epoch 2: step 10: loss 0.0435 acc 0.9795
+GL4: epoch 3: step 10: loss 0.0330 acc 0.9855
+GL4: epoch 4: step 10: loss 0.0336 acc 0.9719
+GL4: epoch 5: step 10: loss 0.0224 acc 0.9802
+GL4: epoch 6: step 10: loss 0.0477 acc 0.9715
+GL4: epoch 7: step 10: loss 0.0071 acc 0.9965
+GL4: epoch 8: step 10: loss 0.0238 acc 0.9850
+GL4: epoch 9: step 10: loss 0.0201 acc 0.9962
+GL4: epoch 10: step 10: loss 0.0238 acc 0.9878
+GL4: epoch 11: step 10: loss 0.0358 acc 0.9818
+GL4: epoch 12: step 10: loss 0.0100 acc 1.0000
+GL4: epoch 13: step 10: loss 0.0708 acc 0.9709
+GL4: epoch 14: step 10: loss 0.0154 acc 0.9932
+GL4: epoch 15: step 10: loss 0.1079 acc 0.9601
+epoch 1: step 10: loss 0.0269 acc 0.9868
+
+test: epoch 1: loss 0.4383 acc 0.8987
+p: 0.9453 r: 0.9384 f1: 0.9418 max_f1 0.9418
+
+epoch 2: step 20: loss 0.0224 acc 0.9897
+
+test: epoch 2: loss 0.5001 acc 0.8987
+p: 0.9453 r: 0.9384 f1: 0.9418 max_f1 0.9418
+
+epoch 3: step 30: loss 0.0314 acc 0.9892
+
+test: epoch 3: loss 0.6101 acc 0.9051
+p: 0.9301 r: 0.9638 f1: 0.9466 max_f1 0.9466
+
+epoch 4: step 40: loss 0.0345 acc 0.9829
+
+test: epoch 4: loss 0.4203 acc 0.8766
+p: 0.9472 r: 0.9094 f1: 0.9279 max_f1 0.9466
+
+epoch 5: step 50: loss 0.0247 acc 0.9922
+epoch 5: step 60: loss 0.0051 acc 1.0000
+
+test: epoch 5: loss 0.6397 acc 0.8892
+p: 0.9414 r: 0.9312 f1: 0.9362 max_f1 0.9466
+
+epoch 6: step 70: loss 0.0627 acc 0.9708
+
+test: epoch 6: loss 0.4587 acc 0.8797
+p: 0.9407 r: 0.9203 f1: 0.9304 max_f1 0.9466
+
+epoch 7: step 80: loss 0.0067 acc 0.9932
+
+test: epoch 7: loss 0.7031 acc 0.8892
+p: 0.9414 r: 0.9312 f1: 0.9362 max_f1 0.9466
+
+epoch 8: step 90: loss 0.0421 acc 0.9800
+
+test: epoch 8: loss 0.5442 acc 0.8987
+p: 0.9485 r: 0.9348 f1: 0.9416 max_f1 0.9466
+
+epoch 9: step 100: loss 0.0328 acc 0.9799
+
+test: epoch 9: loss 0.4601 acc 0.8956
+p: 0.9355 r: 0.9457 f1: 0.9405 max_f1 0.9466
+
+epoch 10: step 110: loss 0.0344 acc 0.9883
+epoch 10: step 120: loss 0.0004 acc 1.0000
+
+test: epoch 10: loss 0.4994 acc 0.8829
+p: 0.9509 r: 0.9130 f1: 0.9316 max_f1 0.9466
+
+epoch 11: step 130: loss 0.0421 acc 0.9808
+
+test: epoch 11: loss 0.3984 acc 0.8829
+p: 0.9579 r: 0.9058 f1: 0.9311 max_f1 0.9466
+
+epoch 12: step 140: loss 0.0393 acc 0.9752
+
+test: epoch 12: loss 0.4951 acc 0.8987
+p: 0.9266 r: 0.9601 f1: 0.9431 max_f1 0.9466
+
+epoch 13: step 150: loss 0.0408 acc 0.9898
+
+test: epoch 13: loss 0.4393 acc 0.8924
+p: 0.9384 r: 0.9384 f1: 0.9384 max_f1 0.9466
+
+epoch 14: step 160: loss 0.0989 acc 0.9681
+
+test: epoch 14: loss 0.3721 acc 0.9177
+p: 0.9310 r: 0.9783 f1: 0.9541 max_f1 0.9541
+
+epoch 15: step 170: loss 0.0466 acc 0.9740
+epoch 15: step 180: loss 0.0069 acc 1.0000
+
+test: epoch 15: loss 0.3453 acc 0.9051
+p: 0.9362 r: 0.9565 f1: 0.9462 max_f1 0.9541
+
+epoch 16: step 190: loss 0.0268 acc 0.9843
+
+test: epoch 16: loss 0.5892 acc 0.9051
+p: 0.9457 r: 0.9457 f1: 0.9457 max_f1 0.9541
+
+epoch 17: step 200: loss 0.0176 acc 0.9925
+
+test: epoch 17: loss 0.4915 acc 0.9019
+p: 0.9422 r: 0.9457 f1: 0.9439 max_f1 0.9541
+
+epoch 18: step 210: loss 0.0075 acc 0.9968
+
+test: epoch 18: loss 0.5825 acc 0.9051
+p: 0.9424 r: 0.9493 f1: 0.9458 max_f1 0.9541
+
+epoch 19: step 220: loss 0.0355 acc 0.9747
+
+test: epoch 19: loss 0.4598 acc 0.8924
+p: 0.9449 r: 0.9312 f1: 0.9380 max_f1 0.9541
+
+epoch 20: step 230: loss 0.0334 acc 0.9771
+epoch 20: step 240: loss 0.0369 acc 0.9672
+
+test: epoch 20: loss 0.4777 acc 0.9051
+p: 0.9424 r: 0.9493 f1: 0.9458 max_f1 0.9541
+
+maxIndex: 13
+Optimization Finished!
+
+############# fold 9 ###############
+train docs: 359    test docs: 40
+GL1: epoch 1: step 10: loss 0.3900 acc 0.8715
+GL1: epoch 2: step 10: loss 0.3235 acc 0.8889
+GL1: epoch 3: step 10: loss 0.2744 acc 0.8857
+GL1: epoch 4: step 10: loss 0.2367 acc 0.9026
+GL1: epoch 5: step 10: loss 0.2185 acc 0.9211
+GL1: epoch 6: step 10: loss 0.2444 acc 0.8980
+GL1: epoch 7: step 10: loss 0.1633 acc 0.9420
+GL1: epoch 8: step 10: loss 0.1396 acc 0.9440
+GL1: epoch 9: step 10: loss 0.1241 acc 0.9515
+GL1: epoch 10: step 10: loss 0.0787 acc 0.9635
+GL1: epoch 11: step 10: loss 0.1375 acc 0.9464
+GL1: epoch 12: step 10: loss 0.0770 acc 0.9750
+GL1: epoch 13: step 10: loss 0.1412 acc 0.9459
+GL1: epoch 14: step 10: loss 0.0388 acc 0.9878
+GL1: epoch 15: step 10: loss 0.1484 acc 0.9328
+GL1: epoch 16: step 10: loss 0.0676 acc 0.9742
+GL1: epoch 17: step 10: loss 0.0368 acc 0.9889
+GL1: epoch 18: step 10: loss 0.0949 acc 0.9716
+GL1: epoch 19: step 10: loss 0.0460 acc 0.9876
+GL1: epoch 20: step 10: loss 0.0507 acc 0.9823
+GL2: epoch 1: step 10: loss 0.1549 acc 0.9677
+GL2: epoch 2: step 10: loss 0.0436 acc 0.9845
+GL2: epoch 3: step 10: loss 0.0394 acc 0.9766
+GL2: epoch 4: step 10: loss 0.0450 acc 0.9791
+GL2: epoch 5: step 10: loss 0.0261 acc 0.9928
+GL2: epoch 6: step 10: loss 0.0351 acc 0.9772
+GL2: epoch 7: step 10: loss 0.0437 acc 0.9798
+GL2: epoch 8: step 10: loss 0.0229 acc 0.9888
+GL2: epoch 9: step 10: loss 0.0215 acc 0.9905
+GL2: epoch 10: step 10: loss 0.0583 acc 0.9792
+GL2: epoch 11: step 10: loss 0.0606 acc 0.9842
+GL2: epoch 12: step 10: loss 0.0643 acc 0.9785
+GL2: epoch 13: step 10: loss 0.0295 acc 0.9859
+GL2: epoch 14: step 10: loss 0.0282 acc 0.9832
+GL2: epoch 15: step 10: loss 0.0226 acc 0.9895
+GL3: epoch 1: step 10: loss 0.0779 acc 0.9685
+GL3: epoch 2: step 10: loss 0.0360 acc 0.9831
+GL3: epoch 3: step 10: loss 0.0416 acc 0.9870
+GL3: epoch 4: step 10: loss 0.0659 acc 0.9779
+GL3: epoch 5: step 10: loss 0.0726 acc 0.9680
+GL3: epoch 6: step 10: loss 0.0181 acc 0.9968
+GL3: epoch 7: step 10: loss 0.0348 acc 0.9779
+GL3: epoch 8: step 10: loss 0.0302 acc 0.9825
+GL3: epoch 9: step 10: loss 0.0163 acc 0.9888
+GL3: epoch 10: step 10: loss 0.0176 acc 0.9918
+GL3: epoch 11: step 10: loss 0.0218 acc 0.9902
+GL3: epoch 12: step 10: loss 0.0161 acc 0.9966
+GL3: epoch 13: step 10: loss 0.0153 acc 0.9966
+GL3: epoch 14: step 10: loss 0.0431 acc 0.9739
+GL3: epoch 15: step 10: loss 0.0151 acc 0.9935
+GL4: epoch 1: step 10: loss 0.0311 acc 0.9819
+GL4: epoch 2: step 10: loss 0.0525 acc 0.9781
+GL4: epoch 3: step 10: loss 0.0260 acc 0.9929
+GL4: epoch 4: step 10: loss 0.0303 acc 0.9863
+GL4: epoch 5: step 10: loss 0.0242 acc 0.9887
+GL4: epoch 6: step 10: loss 0.0088 acc 0.9967
+GL4: epoch 7: step 10: loss 0.0376 acc 0.9794
+GL4: epoch 8: step 10: loss 0.0538 acc 0.9774
+GL4: epoch 9: step 10: loss 0.0158 acc 0.9893
+GL4: epoch 10: step 10: loss 0.0223 acc 0.9843
+GL4: epoch 11: step 10: loss 0.0093 acc 0.9965
+GL4: epoch 12: step 10: loss 0.0153 acc 0.9963
+GL4: epoch 13: step 10: loss 0.0242 acc 0.9797
+GL4: epoch 14: step 10: loss 0.0096 acc 1.0000
+GL4: epoch 15: step 10: loss 0.0151 acc 0.9895
+epoch 1: step 10: loss 0.0914 acc 0.9825
+
+test: epoch 1: loss 0.5877 acc 0.9017
+p: 0.9146 r: 0.9804 f1: 0.9464 max_f1 0.9464
+
+epoch 2: step 20: loss 0.0402 acc 0.9840
+
+test: epoch 2: loss 0.5977 acc 0.8988
+p: 0.9274 r: 0.9608 f1: 0.9438 max_f1 0.9464
+
+epoch 3: step 30: loss 0.0141 acc 0.9927
+
+test: epoch 3: loss 0.4113 acc 0.8555
+p: 0.9354 r: 0.8987 f1: 0.9167 max_f1 0.9464
+
+epoch 4: step 40: loss 0.0158 acc 0.9939
+
+test: epoch 4: loss 0.6447 acc 0.8526
+p: 0.9293 r: 0.9020 f1: 0.9154 max_f1 0.9464
+
+epoch 5: step 50: loss 0.0140 acc 0.9925
+epoch 5: step 60: loss 0.0236 acc 1.0000
+
+test: epoch 5: loss 0.3532 acc 0.8497
+p: 0.9262 r: 0.9020 f1: 0.9139 max_f1 0.9464
+
+epoch 6: step 70: loss 0.0619 acc 0.9755
+
+test: epoch 6: loss 0.4683 acc 0.8642
+p: 0.9246 r: 0.9216 f1: 0.9231 max_f1 0.9464
+
+epoch 7: step 80: loss 0.0371 acc 0.9737
+
+test: epoch 7: loss 0.5632 acc 0.8815
+p: 0.9373 r: 0.9281 f1: 0.9327 max_f1 0.9464
+
+epoch 8: step 90: loss 0.0270 acc 0.9890
+
+test: epoch 8: loss 0.5419 acc 0.8902
+p: 0.9351 r: 0.9412 f1: 0.9381 max_f1 0.9464
+
+epoch 9: step 100: loss 0.0071 acc 0.9929
+
+test: epoch 9: loss 0.5118 acc 0.8815
+p: 0.9344 r: 0.9314 f1: 0.9329 max_f1 0.9464
+
+epoch 10: step 110: loss 0.0175 acc 0.9890
+epoch 10: step 120: loss 0.1345 acc 0.9062
+
+test: epoch 10: loss 0.5579 acc 0.8844
+p: 0.9318 r: 0.9379 f1: 0.9349 max_f1 0.9464
+
+epoch 11: step 130: loss 0.0184 acc 0.9892
+
+test: epoch 11: loss 0.5369 acc 0.8699
+p: 0.9279 r: 0.9248 f1: 0.9264 max_f1 0.9464
+
+epoch 12: step 140: loss 0.0301 acc 0.9888
+
+test: epoch 12: loss 0.7298 acc 0.8584
+p: 0.9241 r: 0.9150 f1: 0.9195 max_f1 0.9464
+
+epoch 13: step 150: loss 0.0255 acc 0.9850
+
+test: epoch 13: loss 0.4465 acc 0.9075
+p: 0.9228 r: 0.9771 f1: 0.9492 max_f1 0.9492
+
+epoch 14: step 160: loss 0.0142 acc 1.0000
+
+test: epoch 14: loss 0.6427 acc 0.8786
+p: 0.9314 r: 0.9314 f1: 0.9314 max_f1 0.9492
+
+epoch 15: step 170: loss 0.0274 acc 0.9920
+epoch 15: step 180: loss 0.0348 acc 0.9672
+
+test: epoch 15: loss 0.5654 acc 0.8960
+p: 0.9327 r: 0.9510 f1: 0.9417 max_f1 0.9492
+
+epoch 16: step 190: loss 0.0100 acc 1.0000
+
+test: epoch 16: loss 0.6458 acc 0.8757
+p: 0.9256 r: 0.9346 f1: 0.9301 max_f1 0.9492
+
+epoch 17: step 200: loss 0.0183 acc 0.9872
+
+test: epoch 17: loss 0.7126 acc 0.8526
+p: 0.9322 r: 0.8987 f1: 0.9151 max_f1 0.9492
+
+epoch 18: step 210: loss 0.0168 acc 0.9898
+
+test: epoch 18: loss 0.6767 acc 0.8728
+p: 0.9281 r: 0.9281 f1: 0.9281 max_f1 0.9492
+
+epoch 19: step 220: loss 0.0136 acc 0.9967
+
+test: epoch 19: loss 0.7041 acc 0.8671
+p: 0.9333 r: 0.9150 f1: 0.9241 max_f1 0.9492
+
+epoch 20: step 230: loss 0.0163 acc 0.9869
+epoch 20: step 240: loss 0.0550 acc 0.9423
+
+test: epoch 20: loss 0.8688 acc 0.8873
+p: 0.9349 r: 0.9379 f1: 0.9364 max_f1 0.9492
+
+maxIndex: 12
+Optimization Finished!
+
+############# fold 10 ###############
+train docs: 360    test docs: 39
+GL1: epoch 1: step 10: loss 0.3115 acc 0.9048
+GL1: epoch 2: step 10: loss 0.3323 acc 0.8865
+GL1: epoch 3: step 10: loss 0.2983 acc 0.8779
+GL1: epoch 4: step 10: loss 0.2518 acc 0.8828
+GL1: epoch 5: step 10: loss 0.2417 acc 0.8730
+GL1: epoch 6: step 10: loss 0.2226 acc 0.9158
+GL1: epoch 7: step 10: loss 0.2248 acc 0.9241
+GL1: epoch 8: step 10: loss 0.1484 acc 0.9412
+GL1: epoch 9: step 10: loss 0.1026 acc 0.9695
+GL1: epoch 10: step 10: loss 0.1113 acc 0.9532
+GL1: epoch 11: step 10: loss 0.0847 acc 0.9723
+GL1: epoch 12: step 10: loss 0.0990 acc 0.9642
+GL1: epoch 13: step 10: loss 0.1043 acc 0.9669
+GL1: epoch 14: step 10: loss 0.0891 acc 0.9622
+GL1: epoch 15: step 10: loss 0.0679 acc 0.9843
+GL1: epoch 16: step 10: loss 0.0649 acc 0.9742
+GL1: epoch 17: step 10: loss 0.0768 acc 0.9706
+GL1: epoch 18: step 10: loss 0.0334 acc 0.9931
+GL1: epoch 19: step 10: loss 0.0609 acc 0.9773
+GL1: epoch 20: step 10: loss 0.0573 acc 0.9618
+GL2: epoch 1: step 10: loss 0.0080 acc 1.0000
+GL2: epoch 2: step 10: loss 0.0704 acc 0.9779
+GL2: epoch 3: step 10: loss 0.0717 acc 0.9648
+GL2: epoch 4: step 10: loss 0.0347 acc 0.9865
+GL2: epoch 5: step 10: loss 0.0428 acc 0.9785
+GL2: epoch 6: step 10: loss 0.0486 acc 0.9767
+GL2: epoch 7: step 10: loss 0.0348 acc 0.9829
+GL2: epoch 8: step 10: loss 0.0634 acc 0.9784
+GL2: epoch 9: step 10: loss 0.0466 acc 0.9798
+GL2: epoch 10: step 10: loss 0.0299 acc 0.9841
+GL2: epoch 11: step 10: loss 0.0101 acc 1.0000
+GL2: epoch 12: step 10: loss 0.0416 acc 0.9782
+GL2: epoch 13: step 10: loss 0.0132 acc 0.9963
+GL2: epoch 14: step 10: loss 0.0155 acc 0.9964
+GL2: epoch 15: step 10: loss 0.0259 acc 0.9891
+GL3: epoch 1: step 10: loss 0.0643 acc 0.9834
+GL3: epoch 2: step 10: loss 0.0213 acc 0.9894
+GL3: epoch 3: step 10: loss 0.0177 acc 0.9925
+GL3: epoch 4: step 10: loss 0.0200 acc 0.9937
+GL3: epoch 5: step 10: loss 0.0147 acc 0.9901
+GL3: epoch 6: step 10: loss 0.0101 acc 0.9937
+GL3: epoch 7: step 10: loss 0.0228 acc 0.9928
+GL3: epoch 8: step 10: loss 0.0164 acc 0.9935
+GL3: epoch 9: step 10: loss 0.0142 acc 0.9899
+GL3: epoch 10: step 10: loss 0.0328 acc 0.9888
+GL3: epoch 11: step 10: loss 0.0149 acc 0.9922
+GL3: epoch 12: step 10: loss 0.0355 acc 0.9801
+GL3: epoch 13: step 10: loss 0.0458 acc 0.9865
+GL3: epoch 14: step 10: loss 0.0233 acc 0.9867
+GL3: epoch 15: step 10: loss 0.0072 acc 0.9964
+GL4: epoch 1: step 10: loss 0.0242 acc 0.9867
+GL4: epoch 2: step 10: loss 0.0323 acc 0.9773
+GL4: epoch 3: step 10: loss 0.0197 acc 0.9873
+GL4: epoch 4: step 10: loss 0.0519 acc 0.9822
+GL4: epoch 5: step 10: loss 0.0212 acc 0.9868
+GL4: epoch 6: step 10: loss 0.0620 acc 0.9611
+GL4: epoch 7: step 10: loss 0.0201 acc 0.9842
+GL4: epoch 8: step 10: loss 0.0237 acc 0.9936
+GL4: epoch 9: step 10: loss 0.0229 acc 0.9885
+GL4: epoch 10: step 10: loss 0.0180 acc 0.9867
+GL4: epoch 11: step 10: loss 0.0131 acc 0.9928
+GL4: epoch 12: step 10: loss 0.0319 acc 0.9808
+GL4: epoch 13: step 10: loss 0.0303 acc 0.9773
+GL4: epoch 14: step 10: loss 0.0459 acc 0.9735
+GL4: epoch 15: step 10: loss 0.0524 acc 0.9835
+epoch 1: step 10: loss 0.0632 acc 0.9826
+
+test: epoch 1: loss 0.5306 acc 0.8840
+p: 0.9175 r: 0.9536 f1: 0.9352 max_f1 0.9352
+
+epoch 2: step 20: loss 0.0370 acc 0.9712
+
+test: epoch 2: loss 0.6994 acc 0.8871
+p: 0.9207 r: 0.9536 f1: 0.9368 max_f1 0.9368
+
+epoch 3: step 30: loss 0.0155 acc 0.9900
+
+test: epoch 3: loss 0.4208 acc 0.8527
+p: 0.9396 r: 0.8893 f1: 0.9138 max_f1 0.9368
+
+epoch 4: step 40: loss 0.0304 acc 0.9861
+
+test: epoch 4: loss 0.4640 acc 0.8871
+p: 0.9236 r: 0.9500 f1: 0.9366 max_f1 0.9368
+
+epoch 5: step 50: loss 0.0607 acc 0.9808
+epoch 5: step 60: loss 0.0722 acc 0.9722
+
+test: epoch 5: loss 0.5124 acc 0.8809
+p: 0.9353 r: 0.9286 f1: 0.9319 max_f1 0.9368
+
+epoch 6: step 70: loss 0.0418 acc 0.9767
+
+test: epoch 6: loss 0.5207 acc 0.8777
+p: 0.9228 r: 0.9393 f1: 0.9310 max_f1 0.9368
+
+epoch 7: step 80: loss 0.0129 acc 0.9924
+
+test: epoch 7: loss 0.4578 acc 0.8809
+p: 0.9291 r: 0.9357 f1: 0.9324 max_f1 0.9368
+
+epoch 8: step 90: loss 0.0065 acc 0.9928
+
+test: epoch 8: loss 0.5101 acc 0.8840
+p: 0.9355 r: 0.9321 f1: 0.9338 max_f1 0.9368
+
+epoch 9: step 100: loss 0.0007 acc 1.0000
+
+test: epoch 9: loss 0.5277 acc 0.8746
+p: 0.9412 r: 0.9143 f1: 0.9275 max_f1 0.9368
+
+epoch 10: step 110: loss 0.0233 acc 0.9803
+epoch 10: step 120: loss 0.0002 acc 1.0000
+
+test: epoch 10: loss 0.5263 acc 0.8871
+p: 0.9326 r: 0.9393 f1: 0.9359 max_f1 0.9368
+
+epoch 11: step 130: loss 0.0271 acc 0.9823
+
+test: epoch 11: loss 0.5418 acc 0.8840
+p: 0.9175 r: 0.9536 f1: 0.9352 max_f1 0.9368
+
+epoch 12: step 140: loss 0.0184 acc 0.9876
+
+test: epoch 12: loss 0.5745 acc 0.8903
+p: 0.9359 r: 0.9393 f1: 0.9376 max_f1 0.9376
+
+epoch 13: step 150: loss 0.0343 acc 0.9839
+
+test: epoch 13: loss 0.5471 acc 0.8840
+p: 0.9263 r: 0.9429 f1: 0.9345 max_f1 0.9376
+
+epoch 14: step 160: loss 0.0217 acc 0.9848
+
+test: epoch 14: loss 0.5653 acc 0.8840
+p: 0.9386 r: 0.9286 f1: 0.9336 max_f1 0.9376
+
+epoch 15: step 170: loss 0.0227 acc 0.9863
+epoch 15: step 180: loss 0.0257 acc 0.9885
+
+test: epoch 15: loss 0.5616 acc 0.8809
+p: 0.9384 r: 0.9250 f1: 0.9317 max_f1 0.9376
+
+epoch 16: step 190: loss 0.0197 acc 0.9857
+
+test: epoch 16: loss 0.5466 acc 0.8777
+p: 0.9382 r: 0.9214 f1: 0.9297 max_f1 0.9376
+
+epoch 17: step 200: loss 0.0195 acc 0.9926
+
+test: epoch 17: loss 0.6609 acc 0.8871
+p: 0.9296 r: 0.9429 f1: 0.9362 max_f1 0.9376
+
+epoch 18: step 210: loss 0.0229 acc 0.9899
+
+test: epoch 18: loss 0.5602 acc 0.8809
+p: 0.9321 r: 0.9321 f1: 0.9321 max_f1 0.9376
+
+epoch 19: step 220: loss 0.0304 acc 0.9866
+
+test: epoch 19: loss 0.5753 acc 0.8840
+p: 0.9293 r: 0.9393 f1: 0.9343 max_f1 0.9376
+
+epoch 20: step 230: loss 0.0260 acc 0.9864
+epoch 20: step 240: loss 0.0017 acc 1.0000
+
+test: epoch 20: loss 0.6437 acc 0.8840
+p: 0.9324 r: 0.9357 f1: 0.9340 max_f1 0.9376
+
+maxIndex: 11
+Optimization Finished!
+
+running time:  82.56444392999013
+
+
+>>>>>>>>>>>>>>>>>>>>TRAINING INFO:
+
+batch-32, learning_rate-0.001, keep_prob1-0.5, num_heads-5, n_layers-5
+training_iter-20, scope-RNN
+
+f1_score in 10 fold: [[0.94428969]
+ [0.96988577]
+ [0.95867769]
+ [0.9292543 ]
+ [0.92537313]
+ [0.93699515]
+ [0.94824708]
+ [0.9540636 ]
+ [0.94920635]
+ [0.93761141]]
+average : 0.9232 0.9691 0.9454
+
+0.9285 0.9632 0.9455
+0.9305 0.9618 0.9458
+0.9232 0.9691 0.9454
+avg_prf:  0.9273923638706854 0.9647103468426604 0.9455508438654426
+Main:  {'n_layers': 4} {'PRF': [0.9271, 0.9665, 0.9463]}
+Main:  {'n_layers': 5} {'PRF': [0.9274, 0.9647, 0.9456]}
